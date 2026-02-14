@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="mainHtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DF.TECHNOLOGY | التميز في حلول الشبكات والأمن</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.4);
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --text-silver: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* تنسيق عام */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'Tajawal', sans-serif;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 20% 30%, #0f172a 0%, #020617 100%);
+        }
+
+        /* --- الهيدر (الملاحة) --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 8%; background: rgba(2, 6, 23, 0.85);
+            position: fixed; width: 100%; top: 0; z-index: 9999;
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon {
+            width: 40px; height: 40px; background: var(--accent); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Orbitron', sans-serif; font-weight: 900; color: #000;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        .logo-text { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: #fff; letter-spacing: 1px; }
+        .logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: #cbd5e1; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .lang-toggle {
+            padding: 6px 18px; border: 1px solid var(--accent); border-radius: 4px;
+            background: transparent; color: var(--accent); cursor: pointer; font-weight: 700;
+        }
+
+        /* --- واجهة الهيرو --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding: 0 5%;
+        }
+        #particles-js { position: absolute; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        
+        .hero-box { position: relative; z-index: 10; }
+        .hero h1 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 25px; }
+        .hero h1 span { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+        .hero p { font-size: 1.2rem; color: var(--text-silver); max-width: 800px; margin: 0 auto 35px; }
+
+        /* --- الخدمات --- */
+        .section { padding: 100px 8%; }
+        .title-area { text-align: center; margin-bottom: 60px; }
+        .title-area h2 { font-size: 2.5rem; margin-bottom: 15px; position: relative; display: inline-block; }
+        .title-area h2::after { content: ''; width: 50px; height: 4px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--card-bg); border: 1px solid var(--glass-border);
+            padding: 40px; border-radius: 20px; transition: 0.4s;
+            backdrop-filter: blur(5px);
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); background: rgba(6, 182, 214, 0.05); }
+        .card i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; display: block; }
+
+        /* --- سجل الإنجازات (المشاريع) --- */
+        .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        
+        .project-card {
+            position: relative; border-radius: 15px; overflow: hidden; height: 300px;
+            border: 1px solid var(--glass-border);
+            background: #111; /* لون خلفية في حال تأخر تحميل الصورة */
+        }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .project-overlay {
+            position: absolute; inset: 0; background: linear-gradient(transparent, rgba(2, 6, 23, 0.9));
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 25px; opacity: 0; transition: 0.4s; transform: translateY(10px);
+        }
+        .project-card:hover img { transform: scale(1.1); filter: brightness(0.7); }
+        .project-card:hover .project-overlay { opacity: 1; transform: translateY(0); }
+
+        /* --- تواصل معنا --- */
+        .contact-wrap {
+            max-width: 900px; margin: 0 auto; background: var(--card-bg);
+            border: 1px solid var(--glass-border); border-radius: 25px; padding: 50px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .form-input {
+            width: 100%; padding: 15px; background: #020617; border: 1px solid #1e293b;
+            border-radius: 8px; color: #fff; margin-bottom: 20px; outline: none; transition: 0.3s;
+        }
+        .form-input:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
+        
+        .btn-action {
+            width: 100%; padding: 18px; background: var(--accent); color: #000; border: none;
+            border-radius: 8px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s;
+        }
+        .btn-action:hover { box-shadow: 0 0 25px var(--accent); transform: scale(1.01); }
+
+        /* اللغات */
+        .content-fr { display: none; }
+        html[lang="fr"] .content-ar { display: none; }
+        html[lang="fr"] .content-fr { display: block; }
+        html[lang="fr"] { direction: ltr; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: var(--text-silver); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">DF</div>
+            <div class="logo-text">TECH<span>NOLOGY</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services" class="content-ar">خدماتنا</a><a href="#services" class="content-fr">Services</a></li>
+            <li><a href="#portfolio" class="content-ar">سجل الإنجازات</a><a href="#portfolio" class="content-fr">Portfolio</a></li>
+            <li><a href="#contact" class="content-ar">تواصل معنا</a><a href="#contact" class="content-fr">Contact</a></li>
+        </ul>
+        <button class="lang-toggle" onclick="toggleLang()">FR / عربي</button>
+    </nav>
+
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-box" data-aos="fade-up">
+            <h1 class="content-ar">نصمم <span>بنية تحتية</span> آمنة وذكية</h1>
+            <h1 class="content-fr">Conception d'<span>Infrastructures</span> Sécurisées</h1>
+            <p class="content-ar">حلول هندسية متقدمة في مجالات الألياف البصرية وأنظمة المراقبة المتكاملة للمؤسسات الكبرى.</p>
+            <p class="content-fr">Solutions d'ingénierie avancées en fibre optique et systèmes de surveillance intégrés.</p>
+            <a href="#contact" class="btn-action" style="width:auto; padding: 15px 40px; text-decoration:none;">ابدأ مشروعك اليوم</a>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="title-area" data-aos="fade-up">
+            <h2 class="content-ar">خدماتنا المتخصصة</h2>
+            <h2 class="content-fr">Nos Services Spécialisés</h2>
+        </div>
+        <div class="grid-3">
+            <div class="card" data-aos="zoom-in">
+                <i class="fas fa-network-wired"></i>
+                <h3 class="content-ar">حلول الألياف البصرية</h3>
+                <h3 class="content-fr">Solutions Fibre Optique</h3>
+                <p class="content-ar">تصميم شبكات الـ Fiber وخدمات اللحام والقياس (OTDR) بأعلى المعايير التقنية.</p>
+                <p class="content-fr">Conception de réseaux Fibre, services de soudure et mesure (OTDR) aux normes élevées.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-video"></i>
+                <h3 class="content-ar">أنظمة المراقبة CCTV</h3>
+                <h3 class="content-fr">Vidéosurveillance CCTV</h3>
+                <p class="content-ar">تأمين المنشآت بأحدث كاميرات IP والربط الشبكي بعيد المدى.</p>
+                <p class="content-fr">Sécurisation des sites avec les dernières caméras IP et connectivité réseau longue distance.</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-server"></i>
+                <h3 class="content-ar">إدارة الشبكات</h3>
+                <h3 class="content-fr">Gestion de Réseaux</h3>
+                <p class="content-ar">تجهيز غرف الخوادم وحلول الربط الداخلي للمصانع والشركات الإدارية.</p>
+                <p class="content-fr">Installation de serveurs et solutions d'interconnexion pour usines et administrations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="portfolio" style="background: rgba(0,0,0,0.2);">
+        <div class="title-area" data-aos="fade-up">
+            <h2 class="content-ar">سجل <span>الإنجازات</span></h2>
+            <h2 class="content-fr">Notre <span>Portfolio</span></h2>
+        </div>
+        <div class="projects-container">
+            <div class="project-card" data-aos="fade-up">
+                <img src="https://images.pexels.com/photos/1145434/pexels-photo-1145434.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fiber Project">
+                <div class="project-overlay">
+                    <h4 class="content-ar">توسعة شبكة الألياف - منطقة صناعية</h4>
+                    <h4 class="content-fr">Extension Fibre - Zone Industrielle</h4>
+                    <small>Fibre Optic & Splicing</small>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.pexels.com/photos/4302082/pexels-photo-4302082.jpeg?auto=compress&cs=tinysrgb&w=800" alt="CCTV Project">
+                <div class="project-overlay">
+                    <h4 class="content-ar">نظام حماية متكامل لمجمع إداري</h4>
+                    <h4 class="content-fr">Protection d'un Complexe Admin</h4>
+                    <small>CCTV IP Systems</small>
+                </div>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Network Project">
+                <div class="project-overlay">
+                    <h4 class="content-ar">تجهيز غرف السيرفرات (Data Center)</h4>
+                    <h4 class="content-fr">Installation de Data Center</h4>
+                    <small>Networking & Infrastructure</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="contact-wrap" data-aos="zoom-in">
+            <div class="title-area">
+                <h2 class="content-ar">اطلب <span>استشارة</span> فنية</h2>
+                <h2 class="content-fr">Demandez un <span>Conseil</span></h2>
+            </div>
+            <form>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <input type="text" class="form-input" placeholder="الاسم / Nom" required>
+                    <input type="tel" class="form-input" placeholder="الهاتف / Tel" required>
+                </div>
+                <input type="email" class="form-input" placeholder="البريد الإلكتروني / Email" required>
+                <textarea class="form-input" rows="5" placeholder="تفاصيل المشروع... / Détails du projet..."></textarea>
+                <button type="submit" class="btn-action">إرسال الطلب الآن</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 DF.TECHNOLOGY - All Rights Reserved</p>
+        <p style="margin-top: 5px; opacity: 0.5;">Engineering Excellence for a Connected World</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 40 },
+                "color": { "value": "#06b6d4" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#06b6d4", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1 }
+            }
+        });
+
+        function toggleLang() {
+            const html = document.getElementById('mainHtml');
+            if (html.getAttribute('lang') === 'ar') {
+                html.setAttribute('lang', 'fr'); html.setAttribute('dir', 'ltr');
+            } else {
+                html.setAttribute('lang', 'ar'); html.setAttribute('dir', 'rtl');
+            }
+        }
+    </script>
+</body>
+</html>
