@@ -67,7 +67,7 @@ section{padding:100px 8%;position:relative;}
 .swiper-slide{display:flex;justify-content:center;align-items:center;}
 .swiper-slide img{
     width:100%;
-    max-height:350px; /* تكبير الصور */
+    max-height:350px;
     object-fit:contain;
     border-radius:14px;
 }
@@ -117,10 +117,10 @@ html[lang="fr"] .content-fr{display:block;}
     </ul>
     <div class="nav-buttons">
         <button onclick="toggleLang()">FR / عربي</button>
-        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-        <a href="https://wa.me/123456789" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 </nav>
 
@@ -166,9 +166,9 @@ html[lang="fr"] .content-fr{display:block;}
 <section id="owner">
     <h2 class="title" data-aos="fade-up">مؤسس الشركة</h2>
     <div class="owner" data-aos="fade-up" data-aos-delay="100">
-        <img src="https://i.ibb.co/nNwJpfBc/68339969-778362739267290-7847663414598959104-n.jpg" alt="Founder">
+        <img src="images/founder.jpg" alt="Founder">
         <div>
-            <h3 class="content-ar">المهندس دانيال فريد</h3>
+            <h3 class="content-ar">المهندس  عيد الياسط زرقون</h3>
             <h3 class="content-fr">Ingénieur Daniel Frid</h3>
             <p class="content-ar">خبير شبكات واتصالات بخبرة أكثر من 12 عاماً في تصميم البنية التحتية الرقمية للمؤسسات الكبرى، وقاد مشاريع متقدمة تجمع بين الأداء العالي والأمن السيبراني.</p>
             <p class="content-fr">Expert en réseaux et communications avec plus de 12 ans d'expérience, ayant dirigé des projets avancés combinant performance élevée et cybersécurité.</p>
@@ -177,14 +177,25 @@ html[lang="fr"] .content-fr{display:block;}
 </section>
 
 <section id="projects">
-    <h2 class="title" data-aos="fade-up">سجل الأعمال</h2>
-    <div class="swiper mySwiper" data-aos="fade-up">
+    <h2 class="title content-ar" data-aos="fade-up">سجل الأعمال</h2>
+    <h2 class="title content-fr" data-aos="fade-up">Projets réalisés</h2>
+    
+    <!-- Swiper عربي -->
+    <div class="swiper mySwiper content-ar" data-aos="fade-up">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="https://i.ibb.co/gb7Rc14k/31218609-455885961514971-3454454355225214976-n.jpg"></div>
-            <div class="swiper-slide"><img src="https://i.ibb.co/MxvVQ1WR/31206435-455887031514864-4430786527110365184-n.jpg"></div>
-            <div class="swiper-slide"><img src="https://i.ibb.co/M51JJ1vh/31239457-455886158181618-3139107406697463808-n.jpg"></div>
-            <div class="swiper-slide"><img src="https://i.ibb.co/Zzf2tPRS/31277563-455887761514791-551007814034653184-n.jpg"></div>
-            <div class="swiper-slide"><img src="https://i.ibb.co/gMBRNdjS/52713010-359198264932449-8554922327840653312-n.jpg"></div>
+            <div class="swiper-slide"><img src="images/projet1.jpg" alt="مشروع 1"></div>
+            <div class="swiper-slide"><img src="images/projet2.jpg" alt="مشروع 2"></div>
+            <div class="swiper-slide"><img src="images/projet3.jpg" alt="مشروع 3"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper فرنسي -->
+    <div class="swiper mySwiper content-fr" data-aos="fade-up">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/projet1.jpg" alt="Projet 1"></div>
+            <div class="swiper-slide"><img src="images/projet2.jpg" alt="Projet 2"></div>
+            <div class="swiper-slide"><img src="images/projet3.jpg" alt="Projet 3"></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
@@ -195,11 +206,11 @@ html[lang="fr"] .content-fr{display:block;}
     <div class="testimonials" data-aos="fade-up" data-aos-delay="100">
         <div class="card">
             <p>شركة ممتازة واحترافية، خدماتهم في الشبكات والمراقبة كانت دقيقة وسريعة.</p>
-            <h4>– علي محمود</h4>
+            <h4>– رمزي سعيدي</h4>
         </div>
         <div class="card">
             <p>التعامل مع الفريق كان سلسًا، والبنية التحتية الرقمية أصبحت مستقرة وموثوقة.</p>
-            <h4>– سارة حامد</h4>
+            <h4>– محمد الداوي</h4>
         </div>
         <div class="card">
             <p>حلول متكاملة واحترافية، أوصي بهم لأي مؤسسة تحتاج أداء عالي وأمان.</p>
@@ -218,10 +229,10 @@ html[lang="fr"] .content-fr{display:block;}
     </form>
     <div class="contact-info" data-aos="fade-up" data-aos-delay="150">
         <a href="mailto:info@df-technology.com"><i class="fas fa-envelope"></i> info@df-technology.com</a>
-        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i> DF Technology</a>
-        <a href="https://wa.me/123456789" target="_blank"><i class="fab fa-whatsapp"></i> تواصل عبر واتساب</a>
-        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> DF Technology</a>
+        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i> تواصل عبر واتساب</a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
     </div>
     <div id="map" style="margin-top:20px;height:300px;width:100%;border-radius:15px;"></div>
 </section>
@@ -234,12 +245,29 @@ html[lang="fr"] .content-fr{display:block;}
 <script>
 AOS.init({duration:1000,once:true});
 
-particlesJS("particles-js", { "particles":{"number":{"value":50},"color":{"value":"#06b6d4"},"shape":{"type":"circle"},"opacity":{"value":0.3},"size":{"value":3},"line_linked":{"enable":true,"distance":150,"color":"#06b6d4","opacity":0.1,"width":1},"move":{"enable":true,"speed":1}}, "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"}}} });
+particlesJS("particles-js", { 
+    "particles":{
+        "number":{"value":50},
+        "color":{"value":"#06b6d4"},
+        "shape":{"type":"circle"},
+        "opacity":{"value":0.3},
+        "size":{"value":3},
+        "line_linked":{"enable":true,"distance":150,"color":"#06b6d4","opacity":0.1,"width":1},
+        "move":{"enable":true,"speed":1}
+    }, 
+    "interactivity":{
+        "detect_on":"canvas",
+        "events":{"onhover":{"enable":true,"mode":"grab"}}
+    } 
+});
 
-const swiper = new Swiper('.mySwiper', {
-    loop:true,
-    pagination:{el:'.swiper-pagination',clickable:true},
-    autoplay:{delay:3000}
+const swiperElements = document.querySelectorAll('.mySwiper');
+swiperElements.forEach(sw => {
+    new Swiper(sw, {
+        loop:true,
+        pagination:{el: sw.querySelector('.swiper-pagination'), clickable:true},
+        autoplay:{delay:3000}
+    });
 });
 
 function toggleLang(){
