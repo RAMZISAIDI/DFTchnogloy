@@ -90,7 +90,11 @@
         .owner-text p { color: var(--text); line-height: 1.8; font-size: 1.1rem; }
 
         /* Projects */
-        .swiper { width: 100%; padding-bottom: 50px; }
+        .swiper { 
+            width: 100%; 
+            padding-bottom: 50px;
+            direction: ltr !important; /* Force LTR for Swiper to work properly */
+        }
         .swiper-slide { background: transparent; display: flex; flex-direction: column; align-items: center; }
         .swiper-slide img { 
             width: 100%; 
@@ -102,6 +106,16 @@
         .project-label { 
             margin-top: 20px; font-size: 1.2rem; font-weight: 700; 
             color: var(--accent); text-align: center; 
+        }
+        
+        /* Fix Swiper buttons for RTL */
+        html[lang="ar"] .swiper-button-next {
+            left: 10px;
+            right: auto;
+        }
+        html[lang="ar"] .swiper-button-prev {
+            right: 10px;
+            left: auto;
         }
 
         /* Contact & Map */
@@ -468,12 +482,33 @@
         });
 
         // Swiper
-        const swiper = new Swiper('.mySwiper', {
-            loop: true,
-            autoHeight: true,
-            pagination: { el: '.swiper-pagination', clickable: true },
-            autoplay: { delay: 4000, disableOnInteraction: false }
-        });
+        let swiper;
+        
+        function initSwiper() {
+            if (swiper) {
+                swiper.destroy(true, true);
+            }
+            
+            swiper = new Swiper('.mySwiper', {
+                loop: true,
+                autoHeight: true,
+                spaceBetween: 30,
+                pagination: { 
+                    el: '.swiper-pagination', 
+                    clickable: true 
+                },
+                autoplay: { 
+                    delay: 4000, 
+                    disableOnInteraction: false 
+                },
+                observer: true,
+                observeParents: true,
+                observeSlideChildren: true
+            });
+        }
+        
+        // Initialize Swiper on page load
+        initSwiper();
 
         // Language Toggle
         function toggleLang() {
@@ -487,14 +522,19 @@
 
             if (currentLang === 'ar') {
                 html.setAttribute('lang', 'fr');
+                html.setAttribute('dir', 'ltr');
                 inputs.forEach(i => i.placeholder = i.getAttribute('data-fr'));
             } else {
                 html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
                 inputs.forEach(i => i.placeholder = i.getAttribute('data-ar'));
             }
             
-            swiper.update();
-            AOS.refresh();
+            // Re-initialize Swiper after language change
+            setTimeout(() => {
+                initSwiper();
+                AOS.refresh();
+            }, 100);
         }
 
         // Form Submit Handler
