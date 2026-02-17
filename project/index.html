@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title id="pgTitle">مشروع - DF Technology</title>
+<meta name="description" id="pgDesc" content="تفاصيل المشروع - DF Technology">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#0a0e27;--acc:#00d9ff;--acc2:#7c3aed;--card:#151b3d;--txt:#94a3b8;--txtl:#cbd5e1;--glass:#1e2951;--grad:linear-gradient(135deg,#00d9ff,#7c3aed);}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:var(--bg);color:#fff;min-height:100vh;}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 7%;background:rgba(10,14,39,.97);backdrop-filter:blur(20px);z-index:99;border-bottom:1px solid rgba(0,217,255,.1);}
+.logo{font-weight:900;font-size:1.45rem;color:#fff;text-decoration:none;}
+.logo span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.25);color:var(--acc);border-radius:9px;text-decoration:none;font-weight:700;font-size:.88rem;transition:.25s;}
+.back:hover{background:var(--acc);color:var(--bg);}
+.hero{padding:140px 7% 80px;background:radial-gradient(ellipse at top,#1e3a8a 0%,var(--bg) 55%);min-height:400px;display:flex;align-items:center;}
+.hero-inner{max-width:900px;}
+.cat{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.2);border-radius:20px;color:var(--acc);font-size:.82rem;font-weight:700;margin-bottom:18px;}
+.hero h1{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;line-height:1.25;margin-bottom:16px;}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.meta{display:flex;gap:20px;flex-wrap:wrap;color:var(--txt);font-size:.87rem;}
+.meta span{display:flex;align-items:center;gap:6px;}
+.meta i{color:var(--acc);}
+main{max-width:960px;margin:0 auto;padding:60px 7%;}
+.img-box{border-radius:18px;overflow:hidden;margin-bottom:40px;box-shadow:0 18px 55px rgba(0,0,0,.5);max-height:520px;}
+.img-box img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-ph{width:100%;height:380px;background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--txt);font-size:4rem;}
+.desc{color:var(--txtl);line-height:1.9;font-size:1.05rem;margin-bottom:40px;}
+.desc p{margin-bottom:14px;}
+.cta{background:var(--card);border:1px solid var(--glass);border-radius:16px;padding:36px;text-align:center;margin-bottom:40px;}
+.cta h3{font-size:1.5rem;font-weight:900;margin-bottom:12px;}
+.cta h3 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta p{color:var(--txtl);margin-bottom:22px;}
+.cta a{display:inline-flex;align-items:center;gap:9px;padding:13px 30px;background:var(--grad);color:#fff;border-radius:10px;text-decoration:none;font-weight:800;transition:.25s;}
+.cta a:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,217,255,.36);}
+.other-projs h2{font-size:1.6rem;font-weight:900;margin-bottom:24px;}
+.other-projs h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+.pcard{background:var(--card);border:1px solid var(--glass);border-radius:14px;overflow:hidden;text-decoration:none;color:#fff;transition:.28s;}
+.pcard:hover{border-color:var(--acc);transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,217,255,.15);}
+.pcard img{width:100%;height:170px;object-fit:cover;}
+.pcard-ph{width:100%;height:170px;background:var(--glass);display:flex;align-items:center;justify-content:center;color:var(--txt);font-size:2rem;}
+.pcard-b{padding:16px;}
+.pcard-t{font-weight:800;font-size:.95rem;margin-bottom:5px;}
+.pcard-c{color:var(--acc);font-size:.78rem;}
+footer{text-align:center;padding:32px;border-top:1px solid var(--glass);color:var(--txt);background:var(--card);}
+footer a{color:var(--acc);text-decoration:none;}
+#loader{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;transition:opacity .5s;}
+#loader.done{opacity:0;pointer-events:none;}
+.spin{width:40px;height:40px;border:3px solid rgba(0,217,255,.2);border-top-color:var(--acc);border-radius:50%;animation:sp .8s linear infinite;}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="spin"></div></div>
+
+<nav>
+  <a class="logo" href="../index.html">DF <span>Technology</span></a>
+  <a class="back" href="../index.html#projects"><i class="fas fa-arrow-right"></i><span class="ar">المشاريع</span><span class="fr" style="display:none">Projets</span></a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="cat" id="projCat"><i class="fas fa-folder"></i><span id="catTxt">مشروع</span></div>
+    <h1 id="projTitle"><span>جاري التحميل...</span></h1>
+    <div class="meta">
+      <span id="projDate"><i class="fas fa-calendar-alt"></i>—</span>
+      <span><i class="fas fa-map-marker-alt"></i><span class="ar">الجزائر</span><span class="fr" style="display:none">Algérie</span></span>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="img-box" id="imgBox">
+    <div class="img-ph"><i class="fas fa-spinner fa-spin"></i></div>
+  </div>
+
+  <div class="desc" id="projDesc"></div>
+
+  <div class="cta">
+    <h3 class="ar">هل تحتاج مشروعاً مماثلاً؟ <span>تواصل معنا</span></h3>
+    <h3 class="fr" style="display:none">Besoin d'un projet similaire? <span>Contactez-nous</span></h3>
+    <p class="ar">فريقنا جاهز لتنفيذ مشروعك بأعلى معايير الجودة وبأسعار تنافسية</p>
+    <p class="fr" style="display:none">Notre équipe est prête à réaliser votre projet avec les plus hauts standards</p>
+    <a href="../index.html#quote">
+      <i class="fas fa-file-invoice"></i>
+      <span class="ar">طلب عرض سعر مجاني</span><span class="fr" style="display:none">Demander un devis</span>
+    </a>
+  </div>
+
+  <div class="other-projs">
+    <h2 class="ar">مشاريع <span>أخرى</span></h2>
+    <h2 class="fr" style="display:none">Autres <span>Réalisations</span></h2>
+    <div class="pgrid" id="otherGrid"></div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 <strong>DF Technology</strong> | <a href="../index.html">العودة للرئيسية</a></p>
+</footer>
+
+<script src="../js/db.js"></script>
+<script>
+const catMap = { fiber:'الألياف البصرية', cctv:'مراقبة CCTV', network:'شبكات', security:'أمن', general:'مشروع' };
+const catMapFr = { fiber:'Fibre Optique', cctv:'Vidéosurveillance', network:'Réseaux', security:'Sécurité', general:'Projet' };
+const ph = 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=1200&h=600&fit=crop';
+
+async function loadProject() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+
+  // Load saved DB config
+  const savedCfg = localStorage.getItem('dft_db_config');
+  if (savedCfg) { try { const c=JSON.parse(savedCfg); if(c.url&&c.key){DB_CONFIG.url=c.url;DB_CONFIG.anonKey=c.key;DB.init();} } catch{} }
+
+  if (!id) { window.location.href = '../404.html'; return; }
+
+  const [projs] = await Promise.all([DB.getProjects()]);
+  const proj = projs.find(p => p.id == id);
+
+  if (!proj) { window.location.href = '../404.html'; return; }
+
+  const lang = document.getElementById('html').getAttribute('lang') || 'ar';
+
+  // Set meta
+  document.getElementById('pgTitle').textContent = `${proj.title_ar} - DF Technology`;
+  document.getElementById('pgDesc').content = proj.description || proj.title_ar;
+
+  // Hero
+  document.getElementById('catTxt').textContent = lang==='ar' ? (catMap[proj.category]||'مشروع') : (catMapFr[proj.category]||'Projet');
+  document.getElementById('projTitle').innerHTML = `<span>${lang==='ar'?proj.title_ar:proj.title_fr}</span>`;
+  document.getElementById('projDate').innerHTML = `<i class="fas fa-calendar-alt"></i>${new Date(proj.created_at||Date.now()).toLocaleDateString('ar-DZ')}`;
+
+  // Image
+  document.getElementById('imgBox').innerHTML = proj.image_url
+    ? `<img src="${proj.image_url}" alt="${proj.title_ar}">`
+    : `<div class="img-ph"><i class="fas fa-images"></i></div>`;
+
+  // Description
+  const desc = proj.description || (lang==='ar'
+    ? 'مشروع احترافي نفذه فريق DF Technology بأعلى معايير الجودة في الجزائر.'
+    : 'Projet professionnel réalisé par l\'équipe DF Technology avec les plus hauts standards de qualité.');
+  document.getElementById('projDesc').innerHTML = desc.split('\n').map(p => `<p>${p}</p>`).join('');
+
+  // Other projects
+  const others = projs.filter(p => p.id != id).slice(0, 3);
+  document.getElementById('otherGrid').innerHTML = others.map(p =>
+    `<a class="pcard" href="index.html?id=${p.id}">
+      ${p.image_url ? `<img src="${p.image_url}" alt="${p.title_ar}">` : '<div class="pcard-ph"><i class="fas fa-images"></i></div>'}
+      <div class="pcard-b">
+        <div class="pcard-t">${lang==='ar'?p.title_ar:p.title_fr}</div>
+        <div class="pcard-c">${lang==='ar'?(catMap[p.category]||'مشروع'):(catMapFr[p.category]||'Projet')}</div>
+      </div>
+    </a>`).join('') || '<p style="color:var(--txt)">لا توجد مشاريع أخرى</p>';
+
+  document.getElementById('loader').classList.add('done');
+}
+
+loadProject();
+</script>
+</body>
+</html>

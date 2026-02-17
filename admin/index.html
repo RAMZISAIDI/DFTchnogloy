@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>لوحة التحكم - DF Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#0d1117;--sb:#161b22;--card:#1c2128;--bd:#30363d;--acc:#00d9ff;--acc2:#7c3aed;--ok:#22c55e;--er:#ef4444;--wa:#f59e0b;--txt:#e6edf3;--mut:#7d8590;--ibg:#0d1117;--grad:linear-gradient(135deg,#00d9ff,#7c3aed);}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:var(--bg);color:var(--txt);display:flex;min-height:100vh;}
+.sb{width:250px;background:var(--sb);border-left:1px solid var(--bd);display:flex;flex-direction:column;position:fixed;top:0;right:0;height:100vh;z-index:100;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--bd) transparent;}
+.sb-logo{padding:22px 18px;border-bottom:1px solid var(--bd);}
+.sb-logo .nm{font-size:1.4rem;font-weight:900;}
+.sb-logo .nm span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sb-logo small{display:block;font-size:.66rem;color:var(--mut);margin-top:2px;}
+.ns{padding:14px 9px 5px;}
+.ns-l{font-size:.66rem;text-transform:uppercase;color:var(--mut);letter-spacing:1.4px;padding:0 9px;margin-bottom:5px;}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:8px;cursor:pointer;color:var(--mut);font-weight:600;font-size:.89rem;text-decoration:none;margin-bottom:3px;position:relative;transition:.18s;}
+.ni:hover{background:rgba(0,217,255,.07);color:var(--acc);}
+.ni.on{background:rgba(0,217,255,.11);color:var(--acc);}
+.ni.on::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:3px;height:55%;background:var(--grad);border-radius:2px 0 0 2px;}
+.ni i{width:17px;text-align:center;font-size:.9rem;}
+.bdg{background:var(--er);color:#fff;border-radius:20px;font-size:.66rem;padding:1px 6px;margin-right:auto;}
+.sb-bot{margin-top:auto;padding:12px 9px;border-top:1px solid var(--bd);}
+.ubox{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;}
+.uav{width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.88rem;flex-shrink:0;}
+.unm{font-weight:700;font-size:.86rem;}
+.url{color:var(--mut);font-size:.72rem;}
+.main{margin-right:250px;flex:1;padding:26px;min-height:100vh;}
+.pg{display:none;animation:fi .22s ease;}
+.pg.on{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.ptit{font-size:1.6rem;font-weight:900;}
+.ptit span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+/* STAT BOXES */
+.sr{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.sbox{background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:20px;transition:.25s;}
+.sbox:hover{border-color:var(--acc);box-shadow:0 4px 16px rgba(0,217,255,.08);}
+.sico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:12px;}
+.ic{background:rgba(0,217,255,.12);color:var(--acc);}
+.ip{background:rgba(124,58,237,.12);color:var(--acc2);}
+.ig{background:rgba(34,197,94,.12);color:var(--ok);}
+.io{background:rgba(245,158,11,.12);color:var(--wa);}
+.sval{font-size:1.85rem;font-weight:900;margin-bottom:2px;}
+.slbl{color:var(--mut);font-size:.83rem;}
+/* BUTTONS */
+.btn{padding:8px 18px;border-radius:8px;border:none;cursor:pointer;font-weight:700;font-size:.86rem;transition:.18s;font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
+.btn:hover{transform:translateY(-1px);}
+.bp{background:var(--grad);color:#fff;}.bp:hover{box-shadow:0 6px 18px rgba(0,217,255,.3);}
+.bd{background:rgba(239,68,68,.12);color:var(--er);border:1px solid rgba(239,68,68,.26);}.bd:hover{background:var(--er);color:#fff;}
+.bg{background:transparent;color:var(--mut);border:1px solid var(--bd);}.bg:hover{color:var(--txt);border-color:var(--acc);}
+.bsm{padding:5px 11px;font-size:.78rem;border-radius:7px;}
+/* CARD */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:13px;overflow:hidden;margin-bottom:20px;}
+.ch{padding:16px 20px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;}
+.ct{font-weight:700;font-size:.97rem;}
+.cb{padding:20px;}
+/* TABLE */
+.tw{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{background:rgba(0,217,255,.04);color:var(--mut);font-size:.73rem;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;text-align:right;font-weight:600;}
+td{padding:12px 14px;border-bottom:1px solid rgba(48,54,61,.4);font-size:.88rem;vertical-align:middle;}
+tr:last-child td{border:none;}
+tr:hover td{background:rgba(0,217,255,.02);}
+/* FORMS */
+.fg{margin-bottom:15px;}
+.fg label{display:block;margin-bottom:5px;font-weight:600;font-size:.84rem;}
+.fg label .req{color:var(--er);}
+.fc{width:100%;padding:10px 13px;background:var(--ibg);border:1px solid var(--bd);color:var(--txt);border-radius:8px;font-size:.9rem;font-family:inherit;transition:.2s;}
+.fc:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(0,217,255,.08);}
+.fc::placeholder{color:var(--mut);}
+textarea.fc{resize:vertical;min-height:85px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fspan{grid-column:1/-1;}
+.fhint{font-size:.73rem;color:var(--mut);margin-top:4px;}
+/* UPLOAD */
+.upl{border:2px dashed var(--bd);border-radius:10px;padding:22px;text-align:center;cursor:pointer;transition:.2s;}
+.upl:hover{border-color:var(--acc);background:rgba(0,217,255,.02);}
+.upl input[type=file]{display:none;}
+.upl img.pv{max-width:100%;max-height:140px;border-radius:7px;margin-top:9px;object-fit:cover;}
+.upl i{font-size:1.7rem;color:var(--mut);margin-bottom:7px;}
+.upl p{color:var(--mut);font-size:.84rem;}
+/* MODAL */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.22s;backdrop-filter:blur(4px);}
+.mo.on{opacity:1;pointer-events:all;}
+.mbox{background:var(--sb);border:1px solid var(--bd);border-radius:16px;padding:28px;width:90%;max-width:560px;max-height:88vh;overflow-y:auto;transform:translateY(16px);transition:.22s;scrollbar-width:thin;}
+.mo.on .mbox{transform:translateY(0);}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.mh h3{font-size:1.15rem;font-weight:800;}
+.mcl{background:none;border:none;color:var(--mut);font-size:1.15rem;cursor:pointer;transition:.18s;}
+.mcl:hover{color:var(--er);}
+/* TOAST */
+.tc{position:fixed;bottom:24px;left:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;}
+.toast{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;min-width:250px;box-shadow:0 6px 22px rgba(0,0,0,.4);animation:tsu .25s ease;}
+@keyframes tsu{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast.ok{border-color:var(--ok);}.toast.ok i{color:var(--ok);}
+.toast.er{border-color:var(--er);}.toast.er i{color:var(--er);}
+/* POST GRID */
+.pgd{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;transition:.25s;}
+.pc:hover{border-color:var(--acc);transform:translateY(-3px);}
+.pc img{width:100%;height:135px;object-fit:cover;}
+.pc-ph{width:100%;height:135px;background:var(--bd);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:1.8rem;}
+.pcb{padding:14px;}
+.pctit{font-weight:700;margin-bottom:5px;font-size:.9rem;}
+.pcdt{font-size:.74rem;color:var(--mut);margin-bottom:10px;}
+.pca{display:flex;gap:7px;}
+/* MSG/QUOTE items */
+.mi{background:rgba(0,0,0,.2);border:1px solid var(--bd);border-radius:11px;padding:16px;margin-bottom:11px;}
+.mi.new{border-color:var(--acc);background:rgba(0,217,255,.03);}
+.mi-hd{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px;}
+.mi-nm{font-weight:700;}
+.mi-dt{font-size:.76rem;color:var(--mut);}
+.mi-bd{color:var(--mut);font-size:.86rem;line-height:1.6;padding:10px;background:rgba(0,0,0,.2);border-radius:7px;}
+.mi-ac{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:.7rem;font-weight:700;}
+.cc{background:rgba(0,217,255,.1);color:var(--acc);}
+.cg{background:rgba(34,197,94,.1);color:var(--ok);}
+.cr{background:rgba(239,68,68,.1);color:var(--er);}
+.cp{background:rgba(124,58,237,.1);color:var(--acc2);}
+/* FAQ */
+.fqi{background:rgba(0,0,0,.2);border:1px solid var(--bd);border-radius:11px;margin-bottom:9px;overflow:hidden;}
+.fqq{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;font-weight:600;font-size:.9rem;}
+.fqq:hover{color:var(--acc);}
+.fqa{display:none;padding:0 18px 14px;color:var(--mut);font-size:.87rem;line-height:1.6;}
+.fqi.open .fqa{display:block;}
+.fqi.open .fqq{color:var(--acc);}
+/* PARTNERS grid */
+.ptg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;}
+.ptc{background:var(--card);border:1px solid var(--bd);border-radius:11px;padding:18px;text-align:center;transition:.25s;position:relative;}
+.ptc:hover{border-color:var(--acc);transform:translateY(-2px);}
+.ptc img{max-width:100%;max-height:52px;object-fit:contain;margin-bottom:9px;}
+.ptc-ph{width:50px;height:50px;background:var(--bd);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:1.3rem;margin:0 auto 9px;}
+.ptc-nm{font-weight:700;font-size:.87rem;}
+.ptc-del{position:absolute;top:7px;left:7px;background:rgba(239,68,68,.14);border:none;color:var(--er);width:24px;height:24px;border-radius:5px;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center;transition:.18s;}
+.ptc-del:hover{background:var(--er);color:#fff;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px;}
+@media(max-width:860px){.sr{grid-template-columns:1fr 1fr;}.sb{width:210px;}.main{margin-right:210px;padding:16px;}.fgrid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sb" id="sb">
+  <div class="sb-logo">
+    <div class="nm">DF <span>Technology</span></div>
+    <small>لوحة التحكم v4.0 — Supabase</small>
+  </div>
+  <div class="ns">
+    <div class="ns-l">الرئيسية</div>
+    <a class="ni on" onclick="go('dash',this)"><i class="fas fa-th-large"></i>لوحة التحكم</a>
+    <a class="ni" onclick="go('msgs',this)"><i class="fas fa-envelope"></i>الرسائل<span class="bdg" id="mBdg" style="display:none">0</span></a>
+    <a class="ni" onclick="go('quotes',this)"><i class="fas fa-file-invoice"></i>طلبات العروض<span class="bdg" id="qBdg" style="display:none">0</span></a>
+  </div>
+  <div class="ns">
+    <div class="ns-l">المحتوى</div>
+    <a class="ni" onclick="go('projs',this)"><i class="fas fa-images"></i>المشاريع</a>
+    <a class="ni" onclick="go('posts',this)"><i class="fas fa-newspaper"></i>المنشورات</a>
+    <a class="ni" onclick="go('svcs',this)"><i class="fas fa-cogs"></i>الخدمات</a>
+    <a class="ni" onclick="go('faq',this)"><i class="fas fa-question-circle"></i>الأسئلة الشائعة</a>
+    <a class="ni" onclick="go('partners',this)"><i class="fas fa-handshake"></i>الشركاء</a>
+    <a class="ni" onclick="go('tests',this)"><i class="fas fa-star"></i>آراء العملاء</a>
+  </div>
+  <div class="ns">
+    <div class="ns-l">الإعدادات</div>
+    <a class="ni" onclick="go('settings',this)"><i class="fas fa-sliders-h"></i>إعدادات الموقع</a>
+    <a class="ni" onclick="go('stats',this)"><i class="fas fa-chart-bar"></i>الإحصائيات</a>
+    <a class="ni" onclick="go('db',this)"><i class="fas fa-database"></i>إعداد قاعدة البيانات</a>
+    <a class="ni" onclick="go('sec',this)"><i class="fas fa-key"></i>الأمان</a>
+  </div>
+  <div class="sb-bot">
+    <div class="ubox"><div class="uav" id="uAv">A</div><div><div class="unm" id="uNm">Admin</div><div class="url">مدير الموقع</div></div></div>
+    <div style="display:flex;gap:7px;margin-top:8px">
+      <a href="../index.html" target="_blank" class="btn bg bsm" style="flex:1;justify-content:center"><i class="fas fa-eye"></i>الموقع</a>
+      <button class="btn bd bsm" onclick="logout()" style="flex:1;justify-content:center"><i class="fas fa-sign-out-alt"></i>خروج</button>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- DASHBOARD -->
+<div class="pg on" id="pg-dash">
+  <div class="ph"><h1 class="ptit">لوحة التحكم <span>الرئيسية</span></h1><a href="../index.html" target="_blank" class="btn bg bsm"><i class="fas fa-eye"></i>عرض الموقع</a></div>
+  <div class="sr">
+    <div class="sbox"><div class="sico ic"><i class="fas fa-images"></i></div><div class="sval" id="ds1">—</div><div class="slbl">المشاريع</div></div>
+    <div class="sbox"><div class="sico ip"><i class="fas fa-newspaper"></i></div><div class="sval" id="ds2">—</div><div class="slbl">المنشورات</div></div>
+    <div class="sbox"><div class="sico ig"><i class="fas fa-envelope"></i></div><div class="sval" id="ds3">—</div><div class="slbl">الرسائل</div></div>
+    <div class="sbox"><div class="sico io"><i class="fas fa-file-invoice"></i></div><div class="sval" id="ds4">—</div><div class="slbl">طلبات العروض</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <div class="card"><div class="ch"><span class="ct">آخر الرسائل</span><button class="btn bg bsm" onclick="go('msgs')">الكل</button></div><div class="cb" id="dMsgs"><i class="fas fa-spinner fa-spin" style="color:var(--acc)"></i></div></div>
+    <div class="card"><div class="ch"><span class="ct">آخر طلبات العروض</span><button class="btn bg bsm" onclick="go('quotes')">الكل</button></div><div class="cb" id="dQuotes"><i class="fas fa-spinner fa-spin" style="color:var(--acc)"></i></div></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="pg" id="pg-projs">
+  <div class="ph"><h1 class="ptit">إدارة <span>المشاريع</span></h1><button class="btn bp" onclick="openM('proj')"><i class="fas fa-plus"></i>إضافة</button></div>
+  <div class="card"><div class="cb tw"><table><thead><tr><th>الصورة</th><th>العنوان (ع)</th><th>العنوان (ف)</th><th>الفئة</th><th>إجراءات</th></tr></thead><tbody id="projTb"><tr><td colspan="5" style="text-align:center"><i class="fas fa-spinner fa-spin" style="color:var(--acc)"></i></td></tr></tbody></table></div></div>
+</div>
+
+<!-- POSTS -->
+<div class="pg" id="pg-posts">
+  <div class="ph"><h1 class="ptit">إدارة <span>المنشورات</span></h1><button class="btn bp" onclick="openM('post')"><i class="fas fa-plus"></i>إضافة</button></div>
+  <div class="pgd" id="postsGrid"></div>
+</div>
+
+<!-- SERVICES -->
+<div class="pg" id="pg-svcs">
+  <div class="ph"><h1 class="ptit">إدارة <span>الخدمات</span></h1><button class="btn bp" onclick="openM('svc')"><i class="fas fa-plus"></i>إضافة</button></div>
+  <div id="svcGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px"></div>
+</div>
+
+<!-- FAQ -->
+<div class="pg" id="pg-faq">
+  <div class="ph"><h1 class="ptit">الأسئلة <span>الشائعة</span></h1><button class="btn bp" onclick="openM('faq')"><i class="fas fa-plus"></i>إضافة سؤال</button></div>
+  <div class="card"><div class="cb" id="faqList"></div></div>
+</div>
+
+<!-- PARTNERS -->
+<div class="pg" id="pg-partners">
+  <div class="ph"><h1 class="ptit">الشركاء <span>والعملاء</span></h1><button class="btn bp" onclick="openM('partner')"><i class="fas fa-plus"></i>إضافة</button></div>
+  <div class="ptg" id="partnerGrid"></div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="pg" id="pg-tests">
+  <div class="ph"><h1 class="ptit">آراء <span>العملاء</span></h1><button class="btn bp" onclick="openM('test')"><i class="fas fa-plus"></i>إضافة رأي</button></div>
+  <div class="card"><div class="cb tw"><table><thead><tr><th>الاسم</th><th>الشركة</th><th>الرأي</th><th>التقييم</th><th>إجراءات</th></tr></thead><tbody id="testTb"></tbody></table></div></div>
+</div>
+
+<!-- MESSAGES -->
+<div class="pg" id="pg-msgs">
+  <div class="ph"><h1 class="ptit">صندوق <span>الرسائل</span></h1><button class="btn bd bsm" onclick="if(confirm('حذف الكل؟'))clearAll('msgs')"><i class="fas fa-trash"></i>حذف الكل</button></div>
+  <div id="msgList"></div>
+</div>
+
+<!-- QUOTES -->
+<div class="pg" id="pg-quotes">
+  <div class="ph"><h1 class="ptit">طلبات <span>عروض الأسعار</span></h1><button class="btn bd bsm" onclick="if(confirm('حذف الكل؟'))clearAll('quotes')"><i class="fas fa-trash"></i>حذف الكل</button></div>
+  <div id="quoteList"></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="pg" id="pg-settings">
+  <div class="ph"><h1 class="ptit">إعدادات <span>الموقع</span></h1><button class="btn bp" onclick="saveSettings()"><i class="fas fa-save"></i>حفظ الكل</button></div>
+  <div class="card"><div class="ch"><span class="ct">الهوية والتواصل</span></div><div class="cb">
+    <div class="fgrid">
+      <div class="fg"><label>الشعار (Logo)</label>
+        <div class="upl" onclick="document.getElementById('logoF').click()">
+          <input type="file" id="logoF" accept="image/*" onchange="prevImg(this,'logoPv','logoD')">
+          <img id="logoPv" class="pv" style="display:none">
+          <div id="logoHint"><i class="fas fa-image"></i><p>رفع الشعار</p></div>
+        </div>
+      </div>
+      <div class="fg"><label>صورة المؤسس</label>
+        <div class="upl" onclick="document.getElementById('fndF').click()">
+          <input type="file" id="fndF" accept="image/*" onchange="prevImg(this,'fndPv','fndD')">
+          <img id="fndPv" class="pv" style="display:none">
+          <div id="fndHint"><i class="fas fa-user-circle"></i><p>رفع الصورة</p></div>
+        </div>
+      </div>
+      <div class="fg"><label>اسم الموقع</label><input class="fc" id="s_sn" placeholder="DF Technology"></div>
+      <div class="fg"><label>الهاتف</label><input class="fc" id="s_ph" placeholder="+213..."></div>
+      <div class="fg"><label>البريد الإلكتروني</label><input class="fc" id="s_em" type="email"></div>
+      <div class="fg"><label>واتساب (بدون +)</label><input class="fc" id="s_wa" placeholder="213..."></div>
+      <div class="fg"><label>فيسبوك</label><input class="fc" id="s_fb" placeholder="https://facebook.com/..."></div>
+      <div class="fg"><label>العنوان</label><input class="fc" id="s_ad"></div>
+      <div class="fg fspan"><label>الشعار التعريفي (عربي)</label><input class="fc" id="s_ta"></div>
+      <div class="fg fspan"><label>Tagline (Français)</label><input class="fc" id="s_tf"></div>
+      <div class="fg fspan"><label>الوصف (عربي)</label><textarea class="fc" id="s_da" rows="3"></textarea></div>
+      <div class="fg fspan"><label>Description (Français)</label><textarea class="fc" id="s_df" rows="3"></textarea></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="ct">معلومات المؤسس</span></div><div class="cb">
+    <div class="fgrid">
+      <div class="fg"><label>اسم المؤسس (عربي)</label><input class="fc" id="s_fna"></div>
+      <div class="fg"><label>Nom Fondateur (Français)</label><input class="fc" id="s_fnf"></div>
+      <div class="fg fspan"><label>نبذة (عربي)</label><textarea class="fc" id="s_fba" rows="4"></textarea></div>
+      <div class="fg fspan"><label>Bio (Français)</label><textarea class="fc" id="s_fbf" rows="4"></textarea></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="ch"><span class="ct">SEO</span></div><div class="cb">
+    <div class="fg"><label>Meta Description</label><textarea class="fc" id="s_md" rows="2"></textarea></div>
+    <div class="fg"><label>Keywords</label><input class="fc" id="s_mk"></div>
+    <div class="fg"><label>رابط الموقع</label><input class="fc" id="s_url" placeholder="https://dftechnology.dz"></div>
+    <div class="fg"><label>بريد الإشعارات (عند وصول رسالة)</label><input class="fc" id="s_ae" type="email" placeholder="admin@..."></div>
+  </div></div>
+</div>
+
+<!-- STATS -->
+<div class="pg" id="pg-stats">
+  <div class="ph"><h1 class="ptit">إدارة <span>الإحصائيات</span></h1><button class="btn bp" onclick="saveStatsPage()"><i class="fas fa-save"></i>حفظ</button></div>
+  <div class="card"><div class="cb" id="statsEdit"></div></div>
+</div>
+
+<!-- DB CONFIG -->
+<div class="pg" id="pg-db">
+  <div class="ph"><h1 class="ptit">إعداد <span>قاعدة البيانات</span></h1></div>
+  <div class="card"><div class="ch"><span class="ct"><i class="fas fa-database" style="color:var(--acc);margin-left:8px"></i>Supabase Configuration</span></div><div class="cb">
+    <div style="background:rgba(0,217,255,.05);border:1px solid rgba(0,217,255,.2);border-radius:10px;padding:18px;margin-bottom:20px">
+      <p style="font-weight:700;margin-bottom:8px;color:var(--acc)"><i class="fas fa-info-circle" style="margin-left:6px"></i>طريقة الإعداد</p>
+      <ol style="color:var(--txt);line-height:2;padding-right:20px;font-size:.9rem">
+        <li>اذهب إلى <a href="https://supabase.com" target="_blank" style="color:var(--acc)">supabase.com</a> وأنشئ حساباً مجانياً</li>
+        <li>أنشئ مشروع جديد (New Project)</li>
+        <li>من القائمة الجانبية: SQL Editor → اضغط "New Query"</li>
+        <li>انسخ محتوى ملف <code style="background:var(--bd);padding:2px 6px;border-radius:4px">supabase_schema.sql</code> والصقه ثم Run</li>
+        <li>من Settings → API: انسخ Project URL و anon public key</li>
+        <li>الصقهما أدناه واضغط "حفظ وتطبيق"</li>
+      </ol>
+    </div>
+    <div class="fg"><label>Supabase Project URL <span class="req">*</span></label><input class="fc" id="db_url" placeholder="https://xxxxxxxxxxx.supabase.co"></div>
+    <div class="fg"><label>Anon Public Key <span class="req">*</span></label><input class="fc" id="db_key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></div>
+    <div id="dbStatus" style="padding:12px;border-radius:8px;margin-bottom:16px;display:none"></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn bp" onclick="saveDbConfig()"><i class="fas fa-save"></i>حفظ وتطبيق</button>
+      <button class="btn bg" onclick="testDb()"><i class="fas fa-plug"></i>اختبار الاتصال</button>
+    </div>
+    <div style="margin-top:20px;padding:14px;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);border-radius:9px">
+      <p style="color:var(--wa);font-weight:700;margin-bottom:6px"><i class="fas fa-exclamation-triangle" style="margin-left:6px"></i>الوضع الحالي</p>
+      <p id="dbMode" style="color:var(--txt);font-size:.88rem">جاري التحقق...</p>
+    </div>
+  </div></div>
+</div>
+
+<!-- SECURITY -->
+<div class="pg" id="pg-sec">
+  <div class="ph"><h1 class="ptit">الأمان <span>وكلمة المرور</span></h1></div>
+  <div class="card"><div class="ch"><span class="ct">تغيير بيانات الدخول</span></div><div class="cb" style="max-width:400px">
+    <div class="fg"><label>اسم المستخدم الجديد</label><input class="fc" id="sec_u" placeholder="admin"></div>
+    <div class="fg"><label>كلمة المرور الحالية <span class="req">*</span></label><input class="fc" type="password" id="sec_o"></div>
+    <div class="fg"><label>كلمة المرور الجديدة (6+ أحرف)</label><input class="fc" type="password" id="sec_n"></div>
+    <div class="fg"><label>تأكيد كلمة المرور</label><input class="fc" type="password" id="sec_c"></div>
+    <button class="btn bp" onclick="changeCreds()"><i class="fas fa-save"></i>حفظ</button>
+  </div></div>
+</div>
+
+</main>
+
+<!-- MODALS -->
+<!-- Project -->
+<div class="mo" id="m-proj"><div class="mbox">
+  <div class="mh"><h3 id="projMT">إضافة مشروع</h3><button class="mcl" onclick="closeM('proj')"><i class="fas fa-times"></i></button></div>
+  <input type="hidden" id="pId">
+  <div class="fg"><label>صورة المشروع</label>
+    <div class="upl" onclick="document.getElementById('pIF').click()">
+      <input type="file" id="pIF" accept="image/*" onchange="prevImg(this,'pIPv','pID')">
+      <img id="pIPv" class="pv" style="display:none">
+      <div id="pIH"><i class="fas fa-cloud-upload-alt"></i><p>رفع صورة</p></div>
+    </div>
+  </div>
+  <div class="fgrid">
+    <div class="fg"><label>العنوان (عربي) <span class="req">*</span></label><input class="fc" id="pAr"></div>
+    <div class="fg"><label>Titre (Français) <span class="req">*</span></label><input class="fc" id="pFr"></div>
+  </div>
+  <div class="fg"><label>الوصف</label><textarea class="fc" id="pDesc" rows="3"></textarea></div>
+  <div class="fg"><label>الفئة</label>
+    <select class="fc" id="pCat"><option value="general">عام</option><option value="fiber">الألياف البصرية</option><option value="cctv">مراقبة CCTV</option><option value="network">شبكات</option><option value="security">أمن</option></select>
+  </div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('proj')">إلغاء</button>
+    <button class="btn bp" onclick="saveProj()"><i class="fas fa-save"></i>حفظ</button>
+  </div>
+</div></div>
+
+<!-- Post -->
+<div class="mo" id="m-post"><div class="mbox">
+  <div class="mh"><h3>إضافة منشور</h3><button class="mcl" onclick="closeM('post')"><i class="fas fa-times"></i></button></div>
+  <input type="hidden" id="postId">
+  <div class="fg"><label>صورة (اختياري)</label>
+    <div class="upl" onclick="document.getElementById('postIF').click()">
+      <input type="file" id="postIF" accept="image/*" onchange="prevImg(this,'postIPv','postID')">
+      <img id="postIPv" class="pv" style="display:none">
+      <div id="postIH"><i class="fas fa-image"></i><p>رفع صورة</p></div>
+    </div>
+  </div>
+  <div class="fg"><label>العنوان <span class="req">*</span></label><input class="fc" id="postT"></div>
+  <div class="fg"><label>المحتوى <span class="req">*</span></label><textarea class="fc" id="postB" rows="5"></textarea></div>
+  <div class="fg"><label>الفئة</label><select class="fc" id="postC"><option value="news">أخبار</option><option value="project">مشروع</option><option value="offer">عرض</option><option value="tip">نصيحة</option></select></div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('post')">إلغاء</button>
+    <button class="btn bp" onclick="savePost()"><i class="fas fa-save"></i>نشر</button>
+  </div>
+</div></div>
+
+<!-- Service -->
+<div class="mo" id="m-svc"><div class="mbox">
+  <div class="mh"><h3 id="svcMT">إضافة خدمة</h3><button class="mcl" onclick="closeM('svc')"><i class="fas fa-times"></i></button></div>
+  <input type="hidden" id="svcId">
+  <div class="fgrid">
+    <div class="fg fspan"><label>الأيقونة (Font Awesome)</label><input class="fc" id="svcIco" placeholder="fas fa-network-wired"><div class="fhint">مثال: fas fa-shield-alt</div></div>
+    <div class="fg"><label>الاسم (عربي) <span class="req">*</span></label><input class="fc" id="svcAr"></div>
+    <div class="fg"><label>Nom (Français) <span class="req">*</span></label><input class="fc" id="svcFr"></div>
+    <div class="fg fspan"><label>الوصف (عربي)</label><textarea class="fc" id="svcDA" rows="2"></textarea></div>
+    <div class="fg fspan"><label>Description (Français)</label><textarea class="fc" id="svcDF" rows="2"></textarea></div>
+    <div class="fg fspan"><label>البنود (عربي) — سطر لكل بند</label><textarea class="fc" id="svcIA" rows="4"></textarea></div>
+    <div class="fg fspan"><label>Items (Français) — une ligne par item</label><textarea class="fc" id="svcIF" rows="4"></textarea></div>
+  </div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('svc')">إلغاء</button>
+    <button class="btn bp" onclick="saveSvc()"><i class="fas fa-save"></i>حفظ</button>
+  </div>
+</div></div>
+
+<!-- FAQ -->
+<div class="mo" id="m-faq"><div class="mbox">
+  <div class="mh"><h3 id="faqMT">إضافة سؤال</h3><button class="mcl" onclick="closeM('faq')"><i class="fas fa-times"></i></button></div>
+  <input type="hidden" id="faqId">
+  <div class="fg"><label>السؤال (عربي) <span class="req">*</span></label><input class="fc" id="faqQA"></div>
+  <div class="fg"><label>Question (Français) <span class="req">*</span></label><input class="fc" id="faqQF"></div>
+  <div class="fg"><label>الجواب (عربي) <span class="req">*</span></label><textarea class="fc" id="faqAA" rows="4"></textarea></div>
+  <div class="fg"><label>Réponse (Français) <span class="req">*</span></label><textarea class="fc" id="faqAF" rows="4"></textarea></div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('faq')">إلغاء</button>
+    <button class="btn bp" onclick="saveFaq()"><i class="fas fa-save"></i>حفظ</button>
+  </div>
+</div></div>
+
+<!-- Partner -->
+<div class="mo" id="m-partner"><div class="mbox">
+  <div class="mh"><h3>إضافة شريك / عميل</h3><button class="mcl" onclick="closeM('partner')"><i class="fas fa-times"></i></button></div>
+  <div class="fg"><label>شعار الشركة</label>
+    <div class="upl" onclick="document.getElementById('ptF').click()">
+      <input type="file" id="ptF" accept="image/*" onchange="prevImg(this,'ptPv','ptD')">
+      <img id="ptPv" class="pv" style="display:none">
+      <div id="ptH"><i class="fas fa-building"></i><p>رفع الشعار</p></div>
+    </div>
+  </div>
+  <div class="fg"><label>اسم الشركة <span class="req">*</span></label><input class="fc" id="ptNm"></div>
+  <div class="fg"><label>الموقع الإلكتروني (اختياري)</label><input class="fc" id="ptUrl" placeholder="https://..."></div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('partner')">إلغاء</button>
+    <button class="btn bp" onclick="savePartner()"><i class="fas fa-save"></i>إضافة</button>
+  </div>
+</div></div>
+
+<!-- Testimonial -->
+<div class="mo" id="m-test"><div class="mbox">
+  <div class="mh"><h3>إضافة رأي عميل</h3><button class="mcl" onclick="closeM('test')"><i class="fas fa-times"></i></button></div>
+  <div class="fgrid">
+    <div class="fg"><label>الاسم <span class="req">*</span></label><input class="fc" id="tNm"></div>
+    <div class="fg"><label>الشركة</label><input class="fc" id="tCo"></div>
+    <div class="fg fspan"><label>الرأي <span class="req">*</span></label><textarea class="fc" id="tTx" rows="4"></textarea></div>
+    <div class="fg"><label>التقييم</label><select class="fc" id="tRt"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option></select></div>
+  </div>
+  <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:15px">
+    <button class="btn bg" onclick="closeM('test')">إلغاء</button>
+    <button class="btn bp" onclick="saveTest()"><i class="fas fa-save"></i>حفظ</button>
+  </div>
+</div></div>
+
+<div class="tc" id="tc"></div>
+
+<script src="../js/db.js"></script>
+<script>
+// ---- Auth ----
+const sess = sessionStorage.getItem('dft_admin');
+if (!sess) { window.location.href = 'login.html'; }
+else { try { if (JSON.parse(sess).exp <= Date.now()) window.location.href = 'login.html'; } catch { window.location.href = 'login.html'; } }
+
+function logout() { sessionStorage.removeItem('dft_admin'); window.location.href = 'login.html'; }
+
+// ---- Init user display ----
+try { const u = JSON.parse(sess); document.getElementById('uNm').textContent = u.user||'Admin'; document.getElementById('uAv').textContent = (u.user||'A')[0].toUpperCase(); } catch {}
+
+// ---- Helpers ----
+const _D = {};  // image data cache
+function toast(msg, type='ok') {
+  const ic = type==='ok' ? 'fa-check-circle' : 'fa-exclamation-circle';
+  const t = document.createElement('div'); t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fas ${ic}"></i><span>${msg}</span>`;
+  document.getElementById('tc').appendChild(t);
+  setTimeout(() => t.remove(), 3200);
+}
+
+function go(id, el) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  if (el) el.classList.add('on');
+  loaders[id]?.();
+}
+
+function openM(n) { resetM(n); document.getElementById('m-'+n).classList.add('on'); }
+function closeM(n) { document.getElementById('m-'+n).classList.remove('on'); }
+function resetM(n) {
+  const m = document.getElementById('m-'+n);
+  m.querySelectorAll('input:not([type=file]),textarea,select').forEach(i => { if(i.type!=='hidden') i.value=''; });
+  m.querySelectorAll('img.pv').forEach(i => { i.style.display='none'; i.src=''; });
+  m.querySelectorAll('[id$=H],[id$=Hint]').forEach(p => p.style.display='');
+  m.querySelectorAll('input[type=hidden]').forEach(i => i.value='');
+  Object.keys(_D).forEach(k => delete _D[k]);
+}
+
+async function prevImg(inp, pvId, dKey) {
+  const f = inp.files[0]; if (!f) return;
+  const url = await DB.uploadImage(f, 'uploads');
+  _D[dKey] = url;
+  const pv = document.getElementById(pvId), ph = document.getElementById(pvId.replace('Pv','H').replace('Pv','Hint'));
+  pv.src = url; pv.style.display = 'block'; if(ph) ph.style.display = 'none';
+}
+
+const catLbl = { news:'أخبار', project:'مشروع', offer:'عرض', tip:'نصيحة' };
+
+// ---- Loaders ----
+const loaders = {
+  dash: loadDash, projs: renderProjs, posts: renderPosts, svcs: renderSvcs,
+  faq: renderFaq, partners: renderPartners, tests: renderTests,
+  msgs: renderMsgs, quotes: renderQuotes, settings: loadSettings, stats: loadStats, db: loadDbPage,
+};
+
+async function updateBadges() {
+  const [msgs, quotes] = await Promise.all([DB.getMessages(), DB.getQuotes()]);
+  const um = msgs.filter(x => !x.is_read).length, uq = quotes.filter(x => !x.is_read).length;
+  const mb = document.getElementById('mBdg'), qb = document.getElementById('qBdg');
+  mb.textContent=um; mb.style.display=um>0?'inline':'none';
+  qb.textContent=uq; qb.style.display=uq>0?'inline':'none';
+}
+
+async function loadDash() {
+  const [projs, posts, msgs, quotes] = await Promise.all([DB.getProjects(), DB.getPosts(), DB.getMessages(), DB.getQuotes()]);
+  document.getElementById('ds1').textContent = projs.length;
+  document.getElementById('ds2').textContent = posts.length;
+  document.getElementById('ds3').textContent = msgs.length;
+  document.getElementById('ds4').textContent = quotes.length;
+  await updateBadges();
+
+  document.getElementById('dMsgs').innerHTML = msgs.length
+    ? msgs.slice(0,4).map(m => `<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)"><span style="font-weight:700">${m.name} ${!m.is_read?'<span class="chip cc">جديد</span>':''}</span><span style="font-size:.75rem;color:var(--mut)">${new Date(m.created_at||Date.now()).toLocaleDateString('ar-DZ')}</span></div>`).join('')
+    : '<p style="color:var(--mut)">لا توجد رسائل</p>';
+
+  document.getElementById('dQuotes').innerHTML = quotes.length
+    ? quotes.slice(0,4).map(q => `<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)"><span style="font-weight:700">${q.name} <span class="chip cp">${q.service_type||'—'}</span></span><span style="font-size:.75rem;color:var(--mut)">${new Date(q.created_at||Date.now()).toLocaleDateString('ar-DZ')}</span></div>`).join('')
+    : '<p style="color:var(--mut)">لا توجد طلبات</p>';
+}
+
+// ---- Projects ----
+async function renderProjs() {
+  const list = await DB.getProjects();
+  document.getElementById('projTb').innerHTML = list.map(p => `
+    <tr>
+      <td>${p.image_url ? `<img src="${p.image_url}" style="width:52px;height:38px;object-fit:cover;border-radius:5px">` : '<div style="width:52px;height:38px;background:var(--bd);border-radius:5px;display:flex;align-items:center;justify-content:center;color:var(--mut)"><i class="fas fa-image"></i></div>'}</td>
+      <td>${p.title_ar}</td><td>${p.title_fr}</td><td><span class="chip cc">${p.category||'—'}</span></td>
+      <td><div style="display:flex;gap:6px">
+        <button class="btn bg bsm" onclick="editProj('${p.id}')"><i class="fas fa-edit"></i></button>
+        <button class="btn bd bsm" onclick="delProj('${p.id}')"><i class="fas fa-trash"></i></button>
+      </div></td>
+    </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--mut);padding:28px">لا توجد مشاريع</td></tr>';
+}
+
+async function saveProj() {
+  const id = document.getElementById('pId').value;
+  const d = { title_ar: document.getElementById('pAr').value.trim(), title_fr: document.getElementById('pFr').value.trim(),
+    description: document.getElementById('pDesc').value.trim(), category: document.getElementById('pCat').value,
+    image_url: _D.pID || undefined };
+  if (!d.title_ar || !d.title_fr) { toast('يرجى ملء الحقول الإلزامية', 'er'); return; }
+  if (!d.image_url) delete d.image_url;
+  try {
+    if (id) { await DB.updateProject(id, d); toast('تم التحديث ✓'); }
+    else { await DB.addProject(d); toast('تم الإضافة ✓'); }
+    closeM('proj'); renderProjs();
+  } catch(e) { toast('خطأ: ' + e.message, 'er'); }
+}
+
+async function editProj(id) {
+  const list = await DB.getProjects(); const p = list.find(x=>x.id===id); if(!p) return;
+  openM('proj'); document.getElementById('projMT').textContent='تعديل المشروع';
+  document.getElementById('pId').value=id; document.getElementById('pAr').value=p.title_ar;
+  document.getElementById('pFr').value=p.title_fr; document.getElementById('pDesc').value=p.description||'';
+  document.getElementById('pCat').value=p.category||'general';
+  if(p.image_url){document.getElementById('pIPv').src=p.image_url;document.getElementById('pIPv').style.display='block';document.getElementById('pIH').style.display='none';}
+}
+
+async function delProj(id) {
+  if(!confirm('حذف هذا المشروع؟')) return;
+  await DB.deleteProject(id); renderProjs(); toast('تم الحذف', 'er');
+}
+
+// ---- Posts ----
+async function renderPosts() {
+  const list = await DB.getPosts();
+  document.getElementById('postsGrid').innerHTML = list.map(p => `
+    <div class="pc">
+      ${p.image_url ? `<img src="${p.image_url}" alt="${p.title}">` : '<div class="pc-ph"><i class="fas fa-newspaper"></i></div>'}
+      <div class="pcb">
+        <span class="chip ${p.category==='offer'?'cr':p.category==='project'?'cg':'cc'}" style="margin-bottom:6px">${catLbl[p.category]||p.category}</span>
+        <div class="pctit">${p.title}</div>
+        <div class="pcdt">${new Date(p.created_at||Date.now()).toLocaleDateString('ar-DZ')}</div>
+        <div class="pca">
+          <button class="btn bg bsm" onclick="editPost('${p.id}')"><i class="fas fa-edit"></i>تعديل</button>
+          <button class="btn bd bsm" onclick="delPost('${p.id}')"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--mut);grid-column:1/-1;text-align:center;padding:36px">لا توجد منشورات</p>';
+}
+
+async function savePost() {
+  const id = document.getElementById('postId').value;
+  const d = { title: document.getElementById('postT').value.trim(), body: document.getElementById('postB').value.trim(),
+    category: document.getElementById('postC').value, image_url: _D.postID || undefined };
+  if (!d.title || !d.body) { toast('يرجى ملء الحقول', 'er'); return; }
+  if (!d.image_url) delete d.image_url;
+  try {
+    if (id) { await DB.updatePost(id, d); toast('تم التحديث ✓'); }
+    else { await DB.addPost(d); toast('تم النشر ✓'); }
+    closeM('post'); renderPosts();
+  } catch(e) { toast('خطأ: ' + e.message, 'er'); }
+}
+
+async function editPost(id) {
+  const list = await DB.getPosts(); const p = list.find(x=>x.id===id); if(!p) return;
+  openM('post'); document.getElementById('postId').value=id;
+  document.getElementById('postT').value=p.title; document.getElementById('postB').value=p.body||'';
+  document.getElementById('postC').value=p.category;
+  if(p.image_url){document.getElementById('postIPv').src=p.image_url;document.getElementById('postIPv').style.display='block';document.getElementById('postIH').style.display='none';}
+}
+
+async function delPost(id) {
+  if(!confirm('حذف؟')) return;
+  await DB.deletePost(id); renderPosts(); toast('تم الحذف','er');
+}
+
+// ---- Services ----
+async function renderSvcs() {
+  const list = await DB.getServices();
+  document.getElementById('svcGrid').innerHTML = list.map(s => `
+    <div style="background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px;transition:.25s" onmouseenter="this.style.borderColor='var(--acc)'" onmouseleave="this.style.borderColor='var(--bd)'">
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+        <i class="${s.icon||'fas fa-cog'}" style="font-size:1.7rem;color:var(--acc)"></i>
+        <div style="display:flex;gap:6px">
+          <button class="btn bg bsm" onclick="editSvc('${s.id}')"><i class="fas fa-edit"></i></button>
+          <button class="btn bd bsm" onclick="delSvc('${s.id}')"><i class="fas fa-trash"></i></button>
+        </div>
+      </div>
+      <div style="font-weight:800;margin-bottom:4px">${s.title_ar}</div>
+      <div style="color:var(--mut);font-size:.8rem">${s.title_fr}</div>
+    </div>`).join('');
+}
+
+async function saveSvc() {
+  const id = document.getElementById('svcId').value;
+  const d = { icon: document.getElementById('svcIco').value.trim()||'fas fa-cog',
+    title_ar: document.getElementById('svcAr').value.trim(), title_fr: document.getElementById('svcFr').value.trim(),
+    desc_ar: document.getElementById('svcDA').value.trim(), desc_fr: document.getElementById('svcDF').value.trim(),
+    items_ar: document.getElementById('svcIA').value.trim().split('\n').filter(Boolean),
+    items_fr: document.getElementById('svcIF').value.trim().split('\n').filter(Boolean) };
+  if (!d.title_ar||!d.title_fr) { toast('يرجى ملء الحقول','er'); return; }
+  try {
+    if (id) { await DB.updateService(id, d); toast('تم التحديث ✓'); }
+    else { await DB.addService(d); toast('تم الإضافة ✓'); }
+    closeM('svc'); renderSvcs();
+  } catch(e) { toast('خطأ: ' + e.message, 'er'); }
+}
+
+async function editSvc(id) {
+  const list = await DB.getServices(); const s = list.find(x=>x.id===id); if(!s) return;
+  openM('svc'); document.getElementById('svcMT').textContent='تعديل الخدمة';
+  document.getElementById('svcId').value=id; document.getElementById('svcIco').value=s.icon;
+  document.getElementById('svcAr').value=s.title_ar; document.getElementById('svcFr').value=s.title_fr;
+  document.getElementById('svcDA').value=s.desc_ar||''; document.getElementById('svcDF').value=s.desc_fr||'';
+  document.getElementById('svcIA').value=(s.items_ar||[]).join('\n');
+  document.getElementById('svcIF').value=(s.items_fr||[]).join('\n');
+}
+
+async function delSvc(id) {
+  if(!confirm('حذف؟')) return;
+  await DB.deleteService(id); renderSvcs(); toast('تم الحذف','er');
+}
+
+// ---- FAQ ----
+async function renderFaq() {
+  const list = await DB.getFaq();
+  document.getElementById('faqList').innerHTML = list.map(f => `
+    <div class="fqi" id="fi-${f.id}">
+      <div class="fqq" onclick="document.getElementById('fi-${f.id}').classList.toggle('open')">
+        <span>${f.question_ar}</span>
+        <div style="display:flex;gap:7px;align-items:center">
+          <button class="btn bg bsm" onclick="event.stopPropagation();editFaq('${f.id}')"><i class="fas fa-edit"></i></button>
+          <button class="btn bd bsm" onclick="event.stopPropagation();delFaq('${f.id}')"><i class="fas fa-trash"></i></button>
+          <i class="fas fa-chevron-down" style="color:var(--acc);transition:.3s"></i>
+        </div>
+      </div>
+      <div class="fqa">${f.answer_ar}<hr style="border-color:var(--bd);margin:10px 0"><em style="color:var(--mut)">${f.question_fr}</em><br>${f.answer_fr}</div>
+    </div>`).join('') || '<p style="color:var(--mut)">لا توجد أسئلة</p>';
+}
+
+async function saveFaq() {
+  const id = document.getElementById('faqId').value;
+  const d = { question_ar: document.getElementById('faqQA').value.trim(), question_fr: document.getElementById('faqQF').value.trim(),
+    answer_ar: document.getElementById('faqAA').value.trim(), answer_fr: document.getElementById('faqAF').value.trim() };
+  if (!d.question_ar||!d.answer_ar) { toast('يرجى ملء الحقول','er'); return; }
+  try {
+    if (id) { await DB.updateFaq(id, d); toast('تم التحديث ✓'); }
+    else { await DB.addFaq(d); toast('تم الإضافة ✓'); }
+    closeM('faq'); renderFaq();
+  } catch(e) { toast('خطأ: ' + e.message, 'er'); }
+}
+
+async function editFaq(id) {
+  const list = await DB.getFaq(); const f = list.find(x=>x.id===id); if(!f) return;
+  openM('faq'); document.getElementById('faqMT').textContent='تعديل السؤال';
+  document.getElementById('faqId').value=id;
+  document.getElementById('faqQA').value=f.question_ar; document.getElementById('faqQF').value=f.question_fr;
+  document.getElementById('faqAA').value=f.answer_ar; document.getElementById('faqAF').value=f.answer_fr;
+}
+
+async function delFaq(id) {
+  if(!confirm('حذف؟')) return;
+  await DB.deleteFaq(id); renderFaq(); toast('تم الحذف','er');
+}
+
+// ---- Partners ----
+async function renderPartners() {
+  const list = await DB.getPartners();
+  document.getElementById('partnerGrid').innerHTML = list.map(p => `
+    <div class="ptc">
+      <button class="ptc-del" onclick="delPartner('${p.id}')"><i class="fas fa-times"></i></button>
+      ${p.logo_url ? `<img src="${p.logo_url}" alt="${p.name}">` : '<div class="ptc-ph"><i class="fas fa-building"></i></div>'}
+      <div class="ptc-nm">${p.name}</div>
+    </div>`).join('') || '<p style="color:var(--mut)">لا يوجد شركاء</p>';
+}
+
+async function savePartner() {
+  const name = document.getElementById('ptNm').value.trim();
+  if (!name) { toast('يرجى إدخال اسم الشركة','er'); return; }
+  await DB.addPartner({ name, logo_url: _D.ptD||null, website: document.getElementById('ptUrl').value.trim()||null });
+  toast('تم الإضافة ✓'); closeM('partner'); renderPartners();
+}
+
+async function delPartner(id) {
+  if(!confirm('حذف؟')) return;
+  await DB.deletePartner(id); renderPartners(); toast('تم الحذف','er');
+}
+
+// ---- Testimonials ----
+async function renderTests() {
+  const list = await DB.getTestimonials();
+  const st = n => '★'.repeat(n)+'☆'.repeat(5-n);
+  document.getElementById('testTb').innerHTML = list.map(t => `
+    <tr><td><strong>${t.client_name}</strong></td><td>${t.company||'—'}</td>
+    <td style="max-width:240px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${t.review}</td>
+    <td style="color:var(--wa)">${st(+t.rating||5)}</td>
+    <td><button class="btn bd bsm" onclick="delTest('${t.id}')"><i class="fas fa-trash"></i></button></td></tr>`
+  ).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--mut);padding:22px">لا توجد آراء</td></tr>';
+}
+
+async function saveTest() {
+  const d = { client_name: document.getElementById('tNm').value.trim(), company: document.getElementById('tCo').value.trim()||null,
+    review: document.getElementById('tTx').value.trim(), rating: +document.getElementById('tRt').value };
+  if (!d.client_name||!d.review) { toast('يرجى ملء الحقول','er'); return; }
+  await DB.addTestimonial(d); toast('تم الإضافة ✓'); closeM('test'); renderTests();
+}
+
+async function delTest(id) {
+  if(!confirm('حذف؟')) return;
+  await DB.deleteTestimonial(id); renderTests(); toast('تم الحذف','er');
+}
+
+// ---- Messages ----
+async function renderMsgs() {
+  const list = await DB.getMessages();
+  document.getElementById('msgList').innerHTML = list.map(m => `
+    <div class="mi ${m.is_read?'':'new'}">
+      <div class="mi-hd">
+        <span class="mi-nm">${m.name}</span>
+        <span style="color:var(--mut);font-size:.8rem"><i class="fas fa-phone" style="color:var(--ok);margin-left:4px"></i>${m.phone||'—'}</span>
+        <span style="color:var(--mut);font-size:.8rem"><i class="fas fa-envelope" style="color:var(--acc);margin-left:4px"></i>${m.email||'—'}</span>
+        <span class="mi-dt">${new Date(m.created_at||Date.now()).toLocaleDateString('ar-DZ')}</span>
+        ${!m.is_read?'<span class="chip cc">جديد</span>':''}
+      </div>
+      <div class="mi-bd">${m.message}</div>
+      <div class="mi-ac">
+        ${!m.is_read?`<button class="btn bsm" style="background:rgba(34,197,94,.12);color:var(--ok);border:1px solid rgba(34,197,94,.26)" onclick="markMsg('${m.id}')"><i class="fas fa-check"></i>تحديد مقروء</button>`:''}
+        ${m.email?`<a href="mailto:${m.email}" class="btn bg bsm"><i class="fas fa-reply"></i>رد</a>`:''}
+        ${m.phone?`<a href="https://wa.me/${(m.phone||'').replace(/\D/g,'')}" target="_blank" class="btn bg bsm"><i class="fab fa-whatsapp"></i></a>`:''}
+        <button class="btn bd bsm" onclick="delMsg('${m.id}')"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--mut);text-align:center;padding:36px">لا توجد رسائل</p>';
+}
+
+async function markMsg(id) { await DB.markMsgRead(id); renderMsgs(); updateBadges(); }
+async function delMsg(id) { await DB.deleteMessage(id); renderMsgs(); updateBadges(); }
+
+// ---- Quotes ----
+const svcTypeLbl = { fiber:'الألياف البصرية', cctv:'CCTV', network:'الشبكات', security:'الأمان', it:'تجهيزات IT', voip:'IP/PABX', other:'أخرى' };
+async function renderQuotes() {
+  const list = await DB.getQuotes();
+  document.getElementById('quoteList').innerHTML = list.map(q => `
+    <div class="mi ${q.is_read?'':'new'}">
+      <div class="mi-hd">
+        <span class="mi-nm">${q.name}</span>
+        <span class="chip cp">${svcTypeLbl[q.service_type]||q.service_type}</span>
+        ${q.budget?`<span class="chip cg">${q.budget}</span>`:''}
+        <span class="chip ${q.status==='new'?'cr':q.status==='contacted'?'cc':'cg'}">${q.status==='new'?'جديد':q.status==='contacted'?'تم التواصل':'مغلق'}</span>
+        <span class="mi-dt">${new Date(q.created_at||Date.now()).toLocaleDateString('ar-DZ')}</span>
+        ${!q.is_read?'<span class="chip cc">غير مقروء</span>':''}
+      </div>
+      <div style="display:flex;gap:16px;font-size:.83rem;color:var(--mut);flex-wrap:wrap;margin-bottom:8px">
+        <span><i class="fas fa-phone" style="color:var(--ok);margin-left:4px"></i>${q.phone}</span>
+        ${q.email?`<span><i class="fas fa-envelope" style="color:var(--acc);margin-left:4px"></i>${q.email}</span>`:''}
+        ${q.wilaya?`<span><i class="fas fa-map-marker-alt" style="color:var(--wa);margin-left:4px"></i>${q.wilaya}</span>`:''}
+      </div>
+      ${q.details?`<div class="mi-bd">${q.details}</div>`:''}
+      <div class="mi-ac">
+        ${!q.is_read?`<button class="btn bsm" style="background:rgba(34,197,94,.12);color:var(--ok);border:1px solid rgba(34,197,94,.26)" onclick="markQuote('${q.id}')"><i class="fas fa-check"></i>مقروء + تواصلنا</button>`:''}
+        <a href="https://wa.me/${(q.phone||'').replace(/\D/g,'')}" target="_blank" class="btn bg bsm"><i class="fab fa-whatsapp"></i>واتساب</a>
+        ${q.email?`<a href="mailto:${q.email}" class="btn bg bsm"><i class="fas fa-reply"></i>رد</a>`:''}
+        <button class="btn bd bsm" onclick="delQuote('${q.id}')"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--mut);text-align:center;padding:36px">لا توجد طلبات</p>';
+}
+
+async function markQuote(id) { await DB.markQuoteRead(id, 'contacted'); renderQuotes(); updateBadges(); }
+async function delQuote(id) { await DB.deleteQuote(id); renderQuotes(); updateBadges(); }
+async function clearAll(type) {
+  const list = type==='msgs' ? await DB.getMessages() : await DB.getQuotes();
+  for (const item of list) { type==='msgs' ? await DB.deleteMessage(item.id) : await DB.deleteQuote(item.id); }
+  type==='msgs' ? renderMsgs() : renderQuotes();
+  updateBadges(); toast('تم حذف الكل','er');
+}
+
+// ---- Settings ----
+async function loadSettings() {
+  const c = await DB.getSettings();
+  const map = { sn:'siteName', ph:'phone', em:'email', wa:'whatsapp', fb:'facebook', ad:'address',
+    ta:'taglineAr', tf:'taglineFr', da:'descAr', df:'descFr',
+    fna:'founderAr', fnf:'founderFr', fba:'founderBioAr', fbf:'founderBioFr',
+    md:'metaDesc', mk:'metaKeywords', url:'siteUrl', ae:'adminEmail' };
+  Object.entries(map).forEach(([k,v]) => { const el=document.getElementById('s_'+k); if(el) el.value=c[v]||''; });
+}
+
+async function saveSettings() {
+  const map = { sn:'siteName', ph:'phone', em:'email', wa:'whatsapp', fb:'facebook', ad:'address',
+    ta:'taglineAr', tf:'taglineFr', da:'descAr', df:'descFr',
+    fna:'founderAr', fnf:'founderFr', fba:'founderBioAr', fbf:'founderBioFr',
+    md:'metaDesc', mk:'metaKeywords', url:'siteUrl', ae:'adminEmail' };
+  const obj = {};
+  Object.entries(map).forEach(([k,v]) => { const el=document.getElementById('s_'+k); if(el) obj[v]=el.value; });
+  if (_D.logoD)  obj.logo = _D.logoD;
+  if (_D.fndD)   obj.founderImg = _D.fndD;
+  await DB.saveAllSettings(obj);
+  toast('تم حفظ الإعدادات ✓');
+}
+
+// ---- Stats ----
+async function loadStats() {
+  const c = await DB.getSettings();
+  document.getElementById('statsEdit').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px">
+      ${[1,2,3].map(i => `
+        <div style="background:var(--bg);padding:16px;border-radius:10px;border:1px solid var(--bd)">
+          <div class="fg"><label>القيمة</label><input class="fc" id="st${i}n" value="${c['stat'+i+'Num']||''}"></div>
+          <div class="fg"><label>التسمية (عربي)</label><input class="fc" id="st${i}a" value="${c['stat'+i+'Ar']||''}"></div>
+          <div class="fg"><label>Libellé (Fr)</label><input class="fc" id="st${i}f" value="${c['stat'+i+'Fr']||''}"></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+async function saveStatsPage() {
+  const obj = {};
+  for (const i of [1,2,3]) {
+    obj[`stat${i}Num`] = document.getElementById(`st${i}n`)?.value||'';
+    obj[`stat${i}Ar`]  = document.getElementById(`st${i}a`)?.value||'';
+    obj[`stat${i}Fr`]  = document.getElementById(`st${i}f`)?.value||'';
+  }
+  await DB.saveAllSettings(obj);
+  toast('تم الحفظ ✓');
+}
+
+// ---- DB Config Page ----
+function loadDbPage() {
+  const mode = DB._useFallback
+    ? '⚠️ وضع المحاكاة (localStorage) — Supabase غير مُعدّ. البيانات لا تُحفظ على السيرفر.'
+    : '✅ متصل بـ Supabase — قاعدة البيانات تعمل بشكل صحيح.';
+  document.getElementById('dbMode').textContent = mode;
+  // Load saved config
+  const saved = localStorage.getItem('dft_db_config');
+  if (saved) { try { const c=JSON.parse(saved); document.getElementById('db_url').value=c.url||''; document.getElementById('db_key').value=c.key||''; } catch{} }
+}
+
+function saveDbConfig() {
+  const url = document.getElementById('db_url').value.trim();
+  const key = document.getElementById('db_key').value.trim();
+  if (!url || !key) { toast('يرجى إدخال URL و Key', 'er'); return; }
+  if (!url.includes('supabase.co')) { toast('الرابط يجب أن يحتوي على supabase.co', 'er'); return; }
+  localStorage.setItem('dft_db_config', JSON.stringify({ url, key }));
+  // Update db.js config dynamically
+  const s = document.createElement('script');
+  s.textContent = `DB_CONFIG.url='${url}';DB_CONFIG.anonKey='${key}';DB.init();`;
+  document.head.appendChild(s);
+  const st = document.getElementById('dbStatus');
+  st.style.display='block'; st.style.background='rgba(34,197,94,.1)'; st.style.border='1px solid rgba(34,197,94,.3)'; st.style.color='#22c55e';
+  st.innerHTML='<i class="fas fa-check-circle" style="margin-left:8px"></i>تم الحفظ! يرجى إعادة تحميل الصفحة لتطبيق التغييرات.';
+  toast('تم حفظ إعداد قاعدة البيانات ✓');
+}
+
+async function testDb() {
+  const url = document.getElementById('db_url').value.trim();
+  const key = document.getElementById('db_key').value.trim();
+  if (!url||!key) { toast('يرجى إدخال البيانات أولاً', 'er'); return; }
+  toast('جاري الاختبار...');
+  try {
+    const res = await fetch(`${url}/rest/v1/settings?limit=1`, { headers: { apikey: key, Authorization: `Bearer ${key}` } });
+    const st = document.getElementById('dbStatus');
+    st.style.display='block';
+    if (res.ok) {
+      st.style.background='rgba(34,197,94,.1)'; st.style.border='1px solid rgba(34,197,94,.3)'; st.style.color='#22c55e';
+      st.innerHTML='<i class="fas fa-check-circle" style="margin-left:8px"></i>الاتصال ناجح ✓ قاعدة البيانات تعمل بشكل صحيح';
+      toast('الاتصال بـ Supabase ناجح ✓');
+    } else {
+      st.style.background='rgba(239,68,68,.1)'; st.style.border='1px solid rgba(239,68,68,.3)'; st.style.color='#ef4444';
+      st.innerHTML=`<i class="fas fa-times-circle" style="margin-left:8px"></i>فشل الاتصال — HTTP ${res.status}. تحقق من URL و Key`;
+      toast('فشل الاتصال — تحقق من البيانات', 'er');
+    }
+  } catch(e) { toast('خطأ في الاتصال: ' + e.message, 'er'); }
+}
+
+// ---- Security ----
+async function changeCreds() {
+  const c = await DB.getSettings();
+  const old = document.getElementById('sec_o').value;
+  const nw  = document.getElementById('sec_n').value;
+  const con = document.getElementById('sec_c').value;
+  const usr = document.getElementById('sec_u').value.trim();
+  if (old !== (c.adminPass||'DFtech2026')) { toast('كلمة المرور الحالية خاطئة','er'); return; }
+  if (nw && nw.length < 6) { toast('كلمة المرور يجب أن تكون 6 أحرف على الأقل','er'); return; }
+  if (nw && nw !== con) { toast('كلمتا المرور غير متطابقتان','er'); return; }
+  const upd = {};
+  if (usr) upd.adminUser = usr;
+  if (nw)  upd.adminPass = nw;
+  await DB.saveAllSettings(upd);
+  ['sec_o','sec_n','sec_c'].forEach(id => document.getElementById(id).value='');
+  toast('تم تحديث بيانات الدخول ✓');
+}
+
+// ---- Init ----
+loadDash();
+// Load saved DB config if exists
+const savedCfg = localStorage.getItem('dft_db_config');
+if (savedCfg) { try { const c=JSON.parse(savedCfg); if(c.url&&c.key) { DB_CONFIG.url=c.url; DB_CONFIG.anonKey=c.key; DB.init(); } } catch{} }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>404 - الصفحة غير موجودة | DF Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+:root{--bg:#0a0e27;--acc:#00d9ff;--grad:linear-gradient(135deg,#00d9ff,#7c3aed);}
+body{background:var(--bg);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1;}
+.o1{width:500px;height:500px;background:#00d9ff;top:-180px;right:-180px;}
+.o2{width:400px;height:400px;background:#7c3aed;bottom:-140px;left:-140px;}
+body::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,217,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,.03) 1px,transparent 1px);background-size:55px 55px;}
+.wrap{position:relative;z-index:5;padding:28px;}
+.ico{font-size:3.2rem;color:#00d9ff;margin-bottom:16px;opacity:.65;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.num{font-size:clamp(7rem,22vw,12rem);font-weight:900;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;}
+h1{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:900;margin-bottom:13px;}
+p{color:#94a3b8;font-size:1rem;max-width:480px;margin:0 auto 32px;line-height:1.7;}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:13px 28px;border-radius:10px;border:none;cursor:pointer;font-weight:800;font-size:.95rem;transition:.28s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:inherit;}
+.bp{background:var(--grad);color:#fff;}.bp:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,217,255,.36);}
+.bo{background:transparent;border:2px solid var(--acc);color:var(--acc);}.bo:hover{background:var(--acc);color:#0a0e27;}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="wrap">
+  <div class="ico"><i class="fas fa-satellite-dish"></i></div>
+  <div class="num">404</div>
+  <h1>الصفحة غير موجودة!</h1>
+  <p>الصفحة التي تبحث عنها لم تعد موجودة أو تم تغيير رابطها. لا تقلق، يمكنك العودة للصفحة الرئيسية.</p>
+  <div class="btns">
+    <a href="/index.html" class="btn bp"><i class="fas fa-home"></i>الصفحة الرئيسية</a>
+    <a href="/index.html#contact" class="btn bo"><i class="fas fa-envelope"></i>اتصل بنا</a>
+  </div>
+</div>
+</body>
+</html>
