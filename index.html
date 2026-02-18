@@ -482,20 +482,20 @@ html[lang="en"] .toastbox{right:auto;left:24px;}
       <form id="quoteForm" onsubmit="submitQuote(event)">
         <div class="fg">
           <label class="ar">الاسم الكامل *</label><label class="fr">Nom complet *</label><label class="en">Full Name *</label>
-          <input id="qn" placeholder="الاسم الكامل" required>
+          <input id="qn" placeholder="الاسم الكامل" data-ar="الاسم الكامل" data-fr="Nom complet" data-en="Full Name" required>
         </div>
         <div class="fg">
           <label class="ar">رقم الهاتف *</label><label class="fr">Téléphone *</label><label class="en">Phone Number *</label>
-          <input id="qp" type="tel" placeholder="05XXXXXXXX" required>
+          <input id="qp" type="tel" placeholder="05XXXXXXXX" data-ar="05XXXXXXXX" data-fr="05XXXXXXXX" data-en="05XXXXXXXX" required>
         </div>
         <div class="fg">
           <label class="ar">البريد الإلكتروني</label><label class="fr">Email</label><label class="en">Email</label>
-          <input id="qe" type="email" placeholder="example@email.com">
+          <input id="qe" type="email" placeholder="example@email.com" data-ar="example@email.com" data-fr="example@email.com" data-en="example@email.com">
         </div>
         <div class="fg">
           <label class="ar">الولاية</label><label class="fr">Wilaya</label><label class="en">Wilaya</label>
           <select id="qw">
-            <option value="">-- اختر الولاية / Wilaya / Select --</option>
+            <option value="" data-ar="-- اختر الولاية --" data-fr="-- Choisir la wilaya --" data-en="-- Select Wilaya --">-- اختر الولاية --</option>
             <option value="01 - أدرار">01 - أدرار (Adrar)</option>
             <option value="02 - الشلف">02 - الشلف (Chlef)</option>
             <option value="03 - الأغواط">03 - الأغواط (Laghouat)</option>
@@ -559,29 +559,29 @@ html[lang="en"] .toastbox{right:auto;left:24px;}
         <div class="fg">
           <label class="ar">نوع الخدمة *</label><label class="fr">Type de service *</label><label class="en">Service Type *</label>
           <select id="qs" required>
-            <option value="">-- اختر الخدمة --</option>
-            <option value="fiber">الألياف البصرية / Fibre Optique / Fiber Optic</option>
-            <option value="cctv">كاميرات المراقبة / CCTV / CCTV</option>
-            <option value="network">شبكات LAN/WAN</option>
-            <option value="security">أنظمة الأمان / Sécurité / Security</option>
-            <option value="it">تجهيزات IT / Équipements IT</option>
-            <option value="voip">هواتف IP / PABX</option>
-            <option value="other">خدمة أخرى / Autre / Other</option>
+            <option value="" data-ar="-- اختر الخدمة --" data-fr="-- Choisir le service --" data-en="-- Select Service --">-- اختر الخدمة --</option>
+            <option value="fiber" data-ar="الألياف البصرية" data-fr="Fibre Optique" data-en="Fiber Optic">الألياف البصرية</option>
+            <option value="cctv" data-ar="كاميرات المراقبة CCTV" data-fr="Caméras de surveillance CCTV" data-en="CCTV Surveillance Cameras">كاميرات المراقبة CCTV</option>
+            <option value="network" data-ar="شبكات LAN/WAN" data-fr="Réseaux LAN/WAN" data-en="LAN/WAN Networks">شبكات LAN/WAN</option>
+            <option value="security" data-ar="أنظمة الأمان والتحكم" data-fr="Systèmes de sécurité et contrôle" data-en="Security & Access Control Systems">أنظمة الأمان والتحكم</option>
+            <option value="it" data-ar="تجهيزات IT" data-fr="Équipements IT" data-en="IT Equipment">تجهيزات IT</option>
+            <option value="voip" data-ar="هواتف IP / PABX" data-fr="Téléphonie IP / PABX" data-en="IP Phones / PABX">هواتف IP / PABX</option>
+            <option value="other" data-ar="خدمة أخرى" data-fr="Autre service" data-en="Other Service">خدمة أخرى</option>
           </select>
         </div>
         <div class="fg">
           <label class="ar">الميزانية التقريبية</label><label class="fr">Budget approximatif</label><label class="en">Approximate Budget</label>
           <select id="qb">
-            <option value="">-- اختياري / Optionnel / Optional --</option>
-            <option value="<100k DA">أقل من 100,000 دج</option>
-            <option value="100k-500k DA">100,000 – 500,000 دج</option>
-            <option value="500k-2M DA">500,000 – 2,000,000 دج</option>
-            <option value=">2M DA">أكثر من 2,000,000 دج</option>
+            <option value="" data-ar="-- اختياري --" data-fr="-- Optionnel --" data-en="-- Optional --">-- اختياري --</option>
+            <option value="<100k DA" data-ar="أقل من 100,000 دج" data-fr="Moins de 100 000 DA" data-en="Less than 100,000 DZD">أقل من 100,000 دج</option>
+            <option value="100k-500k DA" data-ar="100,000 – 500,000 دج" data-fr="100 000 – 500 000 DA" data-en="100,000 – 500,000 DZD">100,000 – 500,000 دج</option>
+            <option value="500k-2M DA" data-ar="500,000 – 2,000,000 دج" data-fr="500 000 – 2 000 000 DA" data-en="500,000 – 2,000,000 DZD">500,000 – 2,000,000 دج</option>
+            <option value=">2M DA" data-ar="أكثر من 2,000,000 دج" data-fr="Plus de 2 000 000 DA" data-en="More than 2,000,000 DZD">أكثر من 2,000,000 دج</option>
           </select>
         </div>
         <div class="fg">
           <label class="ar">تفاصيل المشروع</label><label class="fr">Détails du projet</label><label class="en">Project Details</label>
-          <textarea id="qd" rows="4" placeholder="اشرح مشروعك بإيجاز..."></textarea>
+          <textarea id="qd" rows="4" placeholder="اشرح مشروعك بإيجاز..." data-ar="اشرح مشروعك بإيجاز..." data-fr="Décrivez brièvement votre projet..." data-en="Briefly describe your project..."></textarea>
         </div>
         <button type="submit" class="submit-btn" id="qBtn">
           <i class="fas fa-paper-plane"></i>
@@ -904,11 +904,21 @@ function applyLang(lang) {
   h.setAttribute('lang', lang);
   h.setAttribute('dir', LANG_DIRS[lang]);
   document.getElementById('langBtn').textContent = LANG_LABELS[lang];
-  // Update placeholders for contact form
+
+  // Update placeholders for all inputs/textareas with data-ar
   document.querySelectorAll('[data-ar]').forEach(el => {
     const val = el.getAttribute('data-' + lang) || el.getAttribute('data-ar');
-    el.placeholder = val;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    }
   });
+
+  // Update select option texts based on language
+  document.querySelectorAll('select option[data-ar]').forEach(opt => {
+    const val = opt.getAttribute('data-' + lang) || opt.getAttribute('data-ar');
+    opt.textContent = val;
+  });
+
   localStorage.setItem('dft_lang', lang);
   setTimeout(() => { initSwiper(); AOS.refresh(); }, 100);
 }
