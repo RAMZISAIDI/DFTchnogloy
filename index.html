@@ -41,6 +41,7 @@ body{background:var(--bg);color:#fff;overflow-x:hidden;font-family:'Almarai','Ca
 #scrollTop.vis{opacity:1;}
 #scrollTop:hover{transform:translateY(-3px) scale(1.08);}
 html[lang="fr"] #scrollTop{left:auto;right:24px;}
+html[lang="en"] #scrollTop{left:auto;right:24px;}
 
 /* NAV */
 nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 7%;background:rgba(10,14,39,.96);backdrop-filter:blur(20px);z-index:995;border-bottom:1px solid rgba(0,217,255,.1);}
@@ -221,6 +222,7 @@ html[lang="fr"] .acti:hover{transform:translateX(5px);}
 /* FLOAT */
 .flt{position:fixed;bottom:24px;left:24px;z-index:989;display:flex;flex-direction:column;gap:11px;}
 html[lang="fr"] .flt{left:auto;right:24px;}
+html[lang="en"] .flt{left:auto;right:24px;}
 .fl{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#fff;text-decoration:none;transition:.28s;box-shadow:0 5px 16px rgba(0,0,0,.32);}
 .fl:hover{transform:scale(1.13);}
 .fl-wa{background:#25d366;}.fl-fb{background:#1877f2;}.fl-em{background:var(--acc);}
@@ -230,16 +232,26 @@ footer{text-align:center;padding:36px 7%;border-top:1px solid var(--glass);color
 footer a{color:var(--acc);text-decoration:none;}
 
 /* LANG */
-.ar{display:block;}.fr{display:none;}
+.ar{display:block;}.fr{display:none;}.en{display:none;}
 html[lang="fr"] .ar{display:none;}
 html[lang="fr"] .fr{display:block;}
+html[lang="fr"] .en{display:none;}
+html[lang="en"] .ar{display:none;}
+html[lang="en"] .fr{display:none;}
+html[lang="en"] .en{display:block;}
 html[lang="fr"]{direction:ltr;}
+html[lang="en"]{direction:ltr;}
 html[lang="fr"] .ownb{flex-direction:row;text-align:left;}
+html[lang="en"] .ownb{flex-direction:row;text-align:left;}
 html[lang="fr"] .acti{border-right:none;border-left:4px solid var(--acc);}
+html[lang="en"] .acti{border-right:none;border-left:4px solid var(--acc);}
+html[lang="fr"] .acti:hover{transform:translateX(5px);}
+html[lang="en"] .acti:hover{transform:translateX(5px);}
 
 /* TOAST */
 .toastbox{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:9px;}
 html[lang="fr"] .toastbox{right:auto;left:24px;}
+html[lang="en"] .toastbox{right:auto;left:24px;}
 .toast{background:var(--card);border:1px solid var(--glass);border-radius:10px;padding:13px 18px;display:flex;align-items:center;gap:10px;min-width:240px;box-shadow:0 7px 24px rgba(0,0,0,.4);animation:tsu .28s ease;}
 @keyframes tsu{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
 .toast.ok{border-color:#22c55e;}.toast.ok i{color:#22c55e;}
@@ -279,15 +291,15 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
     <span class="logo-txt">DF <span>Technology</span></span>
   </a>
   <ul id="navMenu">
-    <li><a href="#about">   <span class="ar">من نحن</span>      <span class="fr">Qui sommes-nous</span></a></li>
-    <li><a href="#services"><span class="ar">الخدمات</span>     <span class="fr">Services</span></a></li>
-    <li><a href="#projects"><span class="ar">المشاريع</span>    <span class="fr">Réalisations</span></a></li>
-    <li><a href="#quote">   <span class="ar">عرض سعر</span>    <span class="fr">Devis</span></a></li>
+    <li><a href="#about">   <span class="ar">من نحن</span>      <span class="fr">Qui sommes-nous</span><span class="en">About Us</span></a></li>
+    <li><a href="#services"><span class="ar">الخدمات</span>     <span class="fr">Services</span><span class="en">Services</span></a></li>
+    <li><a href="#projects"><span class="ar">المشاريع</span>    <span class="fr">Réalisations</span><span class="en">Projects</span></a></li>
+    <li><a href="#quote">   <span class="ar">عرض سعر</span>    <span class="fr">Devis</span><span class="en">Quote</span></a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact"> <span class="ar">اتصل بنا</span>   <span class="fr">Contact</span></a></li>
+    <li><a href="#contact"> <span class="ar">اتصل بنا</span>   <span class="fr">Contact</span><span class="en">Contact</span></a></li>
   </ul>
   <div style="display:flex;gap:12px;align-items:center">
-    <button class="nb" onclick="toggleLang()">FR / AR</button>
+    <button class="nb" onclick="cycleLang()"><span id="langBtn">FR / EN</span></button>
     <button class="hbg" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
@@ -298,13 +310,17 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
   <div class="hc" data-aos="fade-up">
     <h1 class="ar">مستقبل التكنولوجيا <span id="hs-ar">بين يديك</span></h1>
     <h1 class="fr">L'avenir de la technologie <span>entre vos mains</span></h1>
+    <h1 class="en">The Future of Technology <span>In Your Hands</span></h1>
     <p class="ar" id="hd-ar">حلول متكاملة في تكنولوجيا المعلومات والاتصالات، شبكات الألياف البصرية، أنظمة الأمان والمراقبة</p>
     <p class="fr" id="hd-fr">Solutions complètes en TIC, réseaux fibre optique, systèmes de sécurité et surveillance</p>
+    <p class="en" id="hd-en">Comprehensive ICT solutions, fiber optic networks, security and surveillance systems</p>
     <div class="bgrp">
       <a href="#quote"    class="btn btn-p ar"><i class="fas fa-file-invoice"></i>طلب عرض سعر</a>
       <a href="#quote"    class="btn btn-p fr"><i class="fas fa-file-invoice"></i>Demander un devis</a>
+      <a href="#quote"    class="btn btn-p en"><i class="fas fa-file-invoice"></i>Request a Quote</a>
       <a href="#services" class="btn btn-o ar">اكتشف خدماتنا</a>
       <a href="#services" class="btn btn-o fr">Nos services</a>
+      <a href="#services" class="btn btn-o en">Our Services</a>
     </div>
   </div>
 </section>
@@ -313,14 +329,18 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="about">
   <h2 class="stitle ar">من <span>نحن</span></h2>
   <h2 class="stitle fr">Qui <span>Sommes-Nous</span></h2>
+  <h2 class="stitle en">About <span>Us</span></h2>
   <div class="ag" data-aos="fade-up">
     <div class="at">
       <h3 class="ar">فريق من الخبراء المتميزين</h3>
       <h3 class="fr">Une équipe d'experts distingués</h3>
+      <h3 class="en">A Team of Distinguished Experts</h3>
       <p class="ar">فريق من المهندسين والخبراء والفنيين خريجي الجامعات والمعاهد الوطنية والدولية المتخصصة في مجال الاتصالات وتكنولوجيا المعلومات.</p>
       <p class="fr">Équipe issue des universités et instituts spécialisés dans le domaine des télécommunications et des TIC.</p>
+      <p class="en">A team of engineers, experts and technicians from national and international universities specialized in telecommunications and IT.</p>
       <p class="ar">فريق أثبت كفاءته في إدارة تكنولوجيا المعلومات والاتصالات وأمن الممتلكات من خلال تنفيذ مشاريع ضخمة لصالح كبار المشغلين في الجزائر.</p>
       <p class="fr">Une équipe ayant prouvé ses compétences en TIC par la réalisation de projets d'envergure pour les grands opérateurs en Algérie.</p>
+      <p class="en">A team that has proven its expertise in ICT and property security by executing large-scale projects for major operators in Algeria.</p>
     </div>
     <div class="aimg" data-aos="fade-left">
       <img src="images/team.jpg" alt="DF Technology Team" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=380&fit=crop'">
@@ -332,11 +352,13 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <!-- MISSION -->
 <section id="mission">
   <div class="mbox" data-aos="zoom-in">
-    <h3 class="ar">مهمتنا</h3><h3 class="fr">Notre Mission</h3>
+    <h3 class="ar">مهمتنا</h3><h3 class="fr">Notre Mission</h3><h3 class="en">Our Mission</h3>
     <p class="ar">هدفنا المساهمة في إنشاء ومساعدتك على تحسين الأنظمة التي تمتلكها من حيث شبكات البنية التحتية للاتصالات والمعلوماتية وكذلك الحلول في مجال التحكم في الوصول وتأمين الممتلكات.</p>
     <p class="fr">Notre objectif est de contribuer dans la mise en place et de vous aider à améliorer vos systèmes en matière de réseaux, infrastructures télécommunications et informatiques, ainsi que les solutions en contrôle d'accès.</p>
+    <p class="en">Our goal is to contribute to the creation and help you improve your systems in terms of telecommunications and IT infrastructure networks, as well as solutions in access control and property security.</p>
     <p class="ar">واجبنا تزويدك بمرافقة عالية الجودة في تنفيذ هذه المنصات من خلال نشر معدات متطورة تتوافق مع متطلبات عملك.</p>
     <p class="fr">Notre devoir est de vous fournir un accompagnement de qualité par le déploiement des équipements de pointe en adéquation avec les exigences de votre métier.</p>
+    <p class="en">Our duty is to provide you with high-quality support in implementing these platforms through the deployment of advanced equipment that meets your business requirements.</p>
   </div>
 </section>
 
@@ -344,6 +366,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="services">
   <h2 class="stitle ar">خدماتنا <span>المتخصصة</span></h2>
   <h2 class="stitle fr">Nos Services <span>Spécialisés</span></h2>
+  <h2 class="stitle en">Our <span>Specialized Services</span></h2>
   <div class="svcg" id="svcGrid">
     <div style="grid-column:1/-1;text-align:center;color:var(--txt);padding:40px"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--acc)"></i></div>
   </div>
@@ -353,19 +376,20 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="activities" style="background:rgba(21,27,61,.35)">
   <h2 class="stitle ar">محاور <span>أنشطتنا</span></h2>
   <h2 class="stitle fr">Axes <span>d'Activité</span></h2>
+  <h2 class="stitle en">Our <span>Activity Areas</span></h2>
   <div class="actg">
-    <div class="acti" data-aos="fade-right"><i class="fas fa-check-circle"></i><span class="ar">الشبكات المحلية والواسعة LAN/WAN</span><span class="fr">Réseaux LAN et WAN</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="40"><i class="fas fa-check-circle"></i><span class="ar">إدارة قوائم الانتظار والعملاء</span><span class="fr">Files d'attente et gestion clientèle</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="80"><i class="fas fa-check-circle"></i><span class="ar">أنظمة الحضور والانصراف</span><span class="fr">Gestion de pointage et accès</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="120"><i class="fas fa-check-circle"></i><span class="ar">المؤتمرات المرئية</span><span class="fr">Visioconférences</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="160"><i class="fas fa-check-circle"></i><span class="ar">الشبكات الهاتفية العامة</span><span class="fr">Réseaux téléphoniques publics</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="200"><i class="fas fa-check-circle"></i><span class="ar">تمديد وتوصيل الألياف البصرية</span><span class="fr">Pose et raccordement fibre optique</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="240"><i class="fas fa-check-circle"></i><span class="ar">الكابلات النحاسية متعددة الأزواج</span><span class="fr">Câbles multi-paires cuivre</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="280"><i class="fas fa-check-circle"></i><span class="ar">هواتف IP وأنظمة PABX</span><span class="fr">Téléphonie IP et PABX</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="320"><i class="fas fa-check-circle"></i><span class="ar">أنظمة الصوتيات والتوزيع الصوتي</span><span class="fr">Systèmes de sonorisation</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="360"><i class="fas fa-check-circle"></i><span class="ar">كاميرات المراقبة عن بُعد</span><span class="fr">Caméras de surveillance</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="400"><i class="fas fa-check-circle"></i><span class="ar">كاشفات الحريق والغاز</span><span class="fr">Détecteurs d'incendie et de gaz</span></div>
-    <div class="acti" data-aos="fade-right" data-aos-delay="440"><i class="fas fa-check-circle"></i><span class="ar">الشبكة الهيدروليكية لمكافحة الحريق</span><span class="fr">Réseau hydraulique lutte incendie</span></div>
+    <div class="acti" data-aos="fade-right"><i class="fas fa-check-circle"></i><span class="ar">الشبكات المحلية والواسعة LAN/WAN</span><span class="fr">Réseaux LAN et WAN</span><span class="en">LAN and WAN Networks</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="40"><i class="fas fa-check-circle"></i><span class="ar">إدارة قوائم الانتظار والعملاء</span><span class="fr">Files d'attente et gestion clientèle</span><span class="en">Queue and Customer Management</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="80"><i class="fas fa-check-circle"></i><span class="ar">أنظمة الحضور والانصراف</span><span class="fr">Gestion de pointage et accès</span><span class="en">Attendance and Access Systems</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="120"><i class="fas fa-check-circle"></i><span class="ar">المؤتمرات المرئية</span><span class="fr">Visioconférences</span><span class="en">Video Conferencing</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="160"><i class="fas fa-check-circle"></i><span class="ar">الشبكات الهاتفية العامة</span><span class="fr">Réseaux téléphoniques publics</span><span class="en">Public Telephone Networks</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="200"><i class="fas fa-check-circle"></i><span class="ar">تمديد وتوصيل الألياف البصرية</span><span class="fr">Pose et raccordement fibre optique</span><span class="en">Fiber Optic Installation</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="240"><i class="fas fa-check-circle"></i><span class="ar">الكابلات النحاسية متعددة الأزواج</span><span class="fr">Câbles multi-paires cuivre</span><span class="en">Multi-pair Copper Cables</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="280"><i class="fas fa-check-circle"></i><span class="ar">هواتف IP وأنظمة PABX</span><span class="fr">Téléphonie IP et PABX</span><span class="en">IP Phones and PABX Systems</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="320"><i class="fas fa-check-circle"></i><span class="ar">أنظمة الصوتيات والتوزيع الصوتي</span><span class="fr">Systèmes de sonorisation</span><span class="en">Sound and Audio Distribution Systems</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="360"><i class="fas fa-check-circle"></i><span class="ar">كاميرات المراقبة عن بُعد</span><span class="fr">Caméras de surveillance</span><span class="en">Remote Surveillance Cameras</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="400"><i class="fas fa-check-circle"></i><span class="ar">كاشفات الحريق والغاز</span><span class="fr">Détecteurs d'incendie et de gaz</span><span class="en">Fire and Gas Detectors</span></div>
+    <div class="acti" data-aos="fade-right" data-aos-delay="440"><i class="fas fa-check-circle"></i><span class="ar">الشبكة الهيدروليكية لمكافحة الحريق</span><span class="fr">Réseau hydraulique lutte incendie</span><span class="en">Fire Fighting Hydraulic Network</span></div>
   </div>
 </section>
 
@@ -376,10 +400,13 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
     <div class="owni">
       <h2 class="ar">عن <span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">المؤسس</span></h2>
       <h2 class="fr">À propos du <span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Fondateur</span></h2>
+      <h2 class="en">About the <span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Founder</span></h2>
       <h3 id="fndNar" class="ar" style="color:var(--acc);font-size:1.5rem;margin-bottom:13px">المهندس عيد الياسط زرقون</h3>
       <h3 id="fndNfr" class="fr" style="color:var(--acc);font-size:1.5rem;margin-bottom:13px">Ing. Eid Elyasst Zargoune</h3>
+      <h3 id="fndNen" class="en" style="color:var(--acc);font-size:1.5rem;margin-bottom:13px">Eng. Eid Elyasst Zargoune</h3>
       <p class="ar" id="fndBar">خبير في تكنولوجيا الاتصالات بخبرة تزيد عن 12 عاماً، أشرف على كبرى مشاريع الشبكات والأمن السيبراني للمؤسسات الحكومية والخاصة.</p>
       <p class="fr" id="fndBfr">Expert en télécommunications avec plus de 12 ans d'expérience, ayant supervisé de grands projets de réseaux et cybersécurité.</p>
+      <p class="en" id="fndBen">Telecommunications expert with over 12 years of experience, having supervised major network and cybersecurity projects for government and private institutions.</p>
     </div>
   </div>
 </section>
@@ -388,6 +415,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="projects" style="background:rgba(21,27,61,.3)">
   <h2 class="stitle ar">سجل <span>أعمالنا</span></h2>
   <h2 class="stitle fr">Nos <span>Réalisations</span></h2>
+  <h2 class="stitle en">Our <span>Portfolio</span></h2>
   <div class="swiper mySwiper" data-aos="zoom-in">
     <div class="swiper-wrapper" id="projSwiper">
       <div class="swiper-slide"><div style="width:100%;height:300px;background:var(--card);border-radius:16px;display:flex;align-items:center;justify-content:center"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--acc)"></i></div></div>
@@ -400,6 +428,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="partners" style="display:none">
   <h2 class="stitle ar">شركاؤنا <span>وعملاؤنا</span></h2>
   <h2 class="stitle fr">Nos <span>Partenaires & Clients</span></h2>
+  <h2 class="stitle en">Our <span>Partners & Clients</span></h2>
   <div class="ptg" id="ptGrid"></div>
 </section>
 
@@ -407,6 +436,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="faq">
   <h2 class="stitle ar">الأسئلة <span>الشائعة</span></h2>
   <h2 class="stitle fr">Questions <span>Fréquentes</span></h2>
+  <h2 class="stitle en">Frequently Asked <span>Questions</span></h2>
   <div class="faqw" id="faqGrid">
     <div style="text-align:center;color:var(--txt);padding:40px"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--acc)"></i></div>
   </div>
@@ -416,6 +446,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="posts" style="display:none;background:rgba(21,27,61,.35)">
   <h2 class="stitle ar">أحدث <span>المنشورات</span></h2>
   <h2 class="stitle fr">Dernières <span>Actualités</span></h2>
+  <h2 class="stitle en">Latest <span>News</span></h2>
   <div class="postg" id="postsGrid"></div>
 </section>
 
@@ -423,6 +454,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="testimonials" style="display:none">
   <h2 class="stitle ar">آراء <span>عملائنا</span></h2>
   <h2 class="stitle fr">Avis de nos <span>Clients</span></h2>
+  <h2 class="stitle en">Our Clients' <span>Reviews</span></h2>
   <div class="testg" id="testGrid"></div>
 </section>
 
@@ -430,61 +462,130 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="quote" class="quosec">
   <h2 class="stitle ar">طلب <span>عرض سعر</span></h2>
   <h2 class="stitle fr">Demande de <span>Devis</span></h2>
+  <h2 class="stitle en">Request a <span>Quote</span></h2>
   <div class="quow">
     <div class="quoi" data-aos="fade-right">
       <h3 class="ar">احصل على عرض سعر <span>مجاني</span></h3>
       <h3 class="fr">Obtenez un devis <span>gratuit</span></h3>
+      <h3 class="en">Get a <span>Free Quote</span></h3>
       <p class="ar">أرسل لنا تفاصيل مشروعك وسيتواصل معك فريقنا خلال 24 ساعة بأفضل عرض يناسب احتياجاتك وميزانيتك.</p>
       <p class="fr">Envoyez-nous les détails de votre projet et notre équipe vous contactera dans les 24h avec la meilleure offre.</p>
+      <p class="en">Send us your project details and our team will contact you within 24 hours with the best offer for your needs and budget.</p>
       <div class="qfl">
-        <div class="qfi"><div class="qfic"><i class="fas fa-clock"></i></div><span class="qftx ar">رد خلال أقل من 24 ساعة</span><span class="qftx fr">Réponse en moins de 24h</span></div>
-        <div class="qfi"><div class="qfic"><i class="fas fa-tag"></i></div><span class="qftx ar">مجاني بدون أي التزام</span><span class="qftx fr">Gratuit sans engagement</span></div>
-        <div class="qfi"><div class="qfic"><i class="fas fa-map-marker-alt"></i></div><span class="qftx ar">نخدم جميع ولايات الجزائر</span><span class="qftx fr">Toutes les wilayas couvertes</span></div>
-        <div class="qfi"><div class="qfic"><i class="fas fa-award"></i></div><span class="qftx ar">ضمان جودة على جميع الأعمال</span><span class="qftx fr">Garantie qualité sur tous les travaux</span></div>
+        <div class="qfi"><div class="qfic"><i class="fas fa-clock"></i></div><span class="qftx ar">رد خلال أقل من 24 ساعة</span><span class="qftx fr">Réponse en moins de 24h</span><span class="qftx en">Response within 24 hours</span></div>
+        <div class="qfi"><div class="qfic"><i class="fas fa-tag"></i></div><span class="qftx ar">مجاني بدون أي التزام</span><span class="qftx fr">Gratuit sans engagement</span><span class="qftx en">Free with no commitment</span></div>
+        <div class="qfi"><div class="qfic"><i class="fas fa-map-marker-alt"></i></div><span class="qftx ar">نخدم جميع ولايات الجزائر</span><span class="qftx fr">Toutes les wilayas couvertes</span><span class="qftx en">All Algerian wilayas covered</span></div>
+        <div class="qfi"><div class="qfic"><i class="fas fa-award"></i></div><span class="qftx ar">ضمان جودة على جميع الأعمال</span><span class="qftx fr">Garantie qualité sur tous les travaux</span><span class="qftx en">Quality guarantee on all work</span></div>
       </div>
     </div>
     <div class="quof" data-aos="fade-left">
       <form id="quoteForm" onsubmit="submitQuote(event)">
-        <div class="fg"><label class="ar">الاسم الكامل *</label><label class="fr">Nom complet *</label><input id="qn" placeholder="الاسم الكامل" required></div>
-        <div class="fg"><label class="ar">رقم الهاتف *</label><label class="fr">Téléphone *</label><input id="qp" type="tel" placeholder="05XXXXXXXX" required></div>
-        <div class="fg"><label class="ar">البريد الإلكتروني</label><label class="fr">Email</label><input id="qe" type="email" placeholder="example@email.com"></div>
         <div class="fg">
-          <label class="ar">الولاية</label><label class="fr">Wilaya</label>
+          <label class="ar">الاسم الكامل *</label><label class="fr">Nom complet *</label><label class="en">Full Name *</label>
+          <input id="qn" placeholder="الاسم الكامل" required>
+        </div>
+        <div class="fg">
+          <label class="ar">رقم الهاتف *</label><label class="fr">Téléphone *</label><label class="en">Phone Number *</label>
+          <input id="qp" type="tel" placeholder="05XXXXXXXX" required>
+        </div>
+        <div class="fg">
+          <label class="ar">البريد الإلكتروني</label><label class="fr">Email</label><label class="en">Email</label>
+          <input id="qe" type="email" placeholder="example@email.com">
+        </div>
+        <div class="fg">
+          <label class="ar">الولاية</label><label class="fr">Wilaya</label><label class="en">Wilaya</label>
           <select id="qw">
-            <option value="">-- اختر الولاية --</option>
-            <option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option>
-            <option>عنابة</option><option>البليدة</option><option>تيزي وزو</option>
-            <option>بجاية</option><option>سطيف</option><option>باتنة</option>
-            <option>تلمسان</option><option>سكيكدة</option><option>ولاية أخرى</option>
+            <option value="">-- اختر الولاية / Wilaya / Select --</option>
+            <option value="01 - أدرار">01 - أدرار (Adrar)</option>
+            <option value="02 - الشلف">02 - الشلف (Chlef)</option>
+            <option value="03 - الأغواط">03 - الأغواط (Laghouat)</option>
+            <option value="04 - أم البواقي">04 - أم البواقي (Oum El Bouaghi)</option>
+            <option value="05 - باتنة">05 - باتنة (Batna)</option>
+            <option value="06 - بجاية">06 - بجاية (Béjaïa)</option>
+            <option value="07 - بسكرة">07 - بسكرة (Biskra)</option>
+            <option value="08 - بشار">08 - بشار (Béchar)</option>
+            <option value="09 - البليدة">09 - البليدة (Blida)</option>
+            <option value="10 - البويرة">10 - البويرة (Bouira)</option>
+            <option value="11 - تمنراست">11 - تمنراست (Tamanrasset)</option>
+            <option value="12 - تبسة">12 - تبسة (Tébessa)</option>
+            <option value="13 - تلمسان">13 - تلمسان (Tlemcen)</option>
+            <option value="14 - تيارت">14 - تيارت (Tiaret)</option>
+            <option value="15 - تيزي وزو">15 - تيزي وزو (Tizi Ouzou)</option>
+            <option value="16 - الجزائر العاصمة">16 - الجزائر العاصمة (Alger)</option>
+            <option value="17 - الجلفة">17 - الجلفة (Djelfa)</option>
+            <option value="18 - جيجل">18 - جيجل (Jijel)</option>
+            <option value="19 - سطيف">19 - سطيف (Sétif)</option>
+            <option value="20 - سعيدة">20 - سعيدة (Saïda)</option>
+            <option value="21 - سكيكدة">21 - سكيكدة (Skikda)</option>
+            <option value="22 - سيدي بلعباس">22 - سيدي بلعباس (Sidi Bel Abbès)</option>
+            <option value="23 - عنابة">23 - عنابة (Annaba)</option>
+            <option value="24 - قالمة">24 - قالمة (Guelma)</option>
+            <option value="25 - قسنطينة">25 - قسنطينة (Constantine)</option>
+            <option value="26 - المدية">26 - المدية (Médéa)</option>
+            <option value="27 - مستغانم">27 - مستغانم (Mostaganem)</option>
+            <option value="28 - المسيلة">28 - المسيلة (M'Sila)</option>
+            <option value="29 - معسكر">29 - معسكر (Mascara)</option>
+            <option value="30 - ورقلة">30 - ورقلة (Ouargla)</option>
+            <option value="31 - وهران">31 - وهران (Oran)</option>
+            <option value="32 - البيض">32 - البيض (El Bayadh)</option>
+            <option value="33 - إليزي">33 - إليزي (Illizi)</option>
+            <option value="34 - برج بوعريريج">34 - برج بوعريريج (Bordj Bou Arréridj)</option>
+            <option value="35 - بومرداس">35 - بومرداس (Boumerdès)</option>
+            <option value="36 - الطارف">36 - الطارف (El Tarf)</option>
+            <option value="37 - تندوف">37 - تندوف (Tindouf)</option>
+            <option value="38 - تيسمسيلت">38 - تيسمسيلت (Tissemsilt)</option>
+            <option value="39 - الوادي">39 - الوادي (El Oued)</option>
+            <option value="40 - خنشلة">40 - خنشلة (Khenchela)</option>
+            <option value="41 - سوق أهراس">41 - سوق أهراس (Souk Ahras)</option>
+            <option value="42 - تيبازة">42 - تيبازة (Tipaza)</option>
+            <option value="43 - ميلة">43 - ميلة (Mila)</option>
+            <option value="44 - عين الدفلى">44 - عين الدفلى (Aïn Defla)</option>
+            <option value="45 - النعامة">45 - النعامة (Naâma)</option>
+            <option value="46 - عين تموشنت">46 - عين تموشنت (Aïn Témouchent)</option>
+            <option value="47 - غرداية">47 - غرداية (Ghardaïa)</option>
+            <option value="48 - غليزان">48 - غليزان (Relizane)</option>
+            <option value="49 - تيميمون">49 - تيميمون (Timimoun)</option>
+            <option value="50 - برج باجي مختار">50 - برج باجي مختار (Bordj Badji Mokhtar)</option>
+            <option value="51 - أولاد جلال">51 - أولاد جلال (Ouled Djellal)</option>
+            <option value="52 - بني عباس">52 - بني عباس (Béni Abbès)</option>
+            <option value="53 - عين صالح">53 - عين صالح (In Salah)</option>
+            <option value="54 - عين قزام">54 - عين قزام (In Guezzam)</option>
+            <option value="55 - تقرت">55 - تقرت (Touggourt)</option>
+            <option value="56 - جانت">56 - جانت (Djanet)</option>
+            <option value="57 - المغير">57 - المغير (El M'Ghair)</option>
+            <option value="58 - المنيعة">58 - المنيعة (El Meniaa)</option>
           </select>
         </div>
         <div class="fg">
-          <label class="ar">نوع الخدمة *</label><label class="fr">Type de service *</label>
+          <label class="ar">نوع الخدمة *</label><label class="fr">Type de service *</label><label class="en">Service Type *</label>
           <select id="qs" required>
             <option value="">-- اختر الخدمة --</option>
-            <option value="fiber">الألياف البصرية</option>
-            <option value="cctv">كاميرات المراقبة CCTV</option>
+            <option value="fiber">الألياف البصرية / Fibre Optique / Fiber Optic</option>
+            <option value="cctv">كاميرات المراقبة / CCTV / CCTV</option>
             <option value="network">شبكات LAN/WAN</option>
-            <option value="security">أنظمة الأمان والتحكم</option>
-            <option value="it">تجهيزات IT</option>
+            <option value="security">أنظمة الأمان / Sécurité / Security</option>
+            <option value="it">تجهيزات IT / Équipements IT</option>
             <option value="voip">هواتف IP / PABX</option>
-            <option value="other">خدمة أخرى</option>
+            <option value="other">خدمة أخرى / Autre / Other</option>
           </select>
         </div>
         <div class="fg">
-          <label class="ar">الميزانية التقريبية</label><label class="fr">Budget approximatif</label>
+          <label class="ar">الميزانية التقريبية</label><label class="fr">Budget approximatif</label><label class="en">Approximate Budget</label>
           <select id="qb">
-            <option value="">-- اختياري --</option>
-            <option value="&lt;100k DA">أقل من 100,000 دج</option>
+            <option value="">-- اختياري / Optionnel / Optional --</option>
+            <option value="<100k DA">أقل من 100,000 دج</option>
             <option value="100k-500k DA">100,000 – 500,000 دج</option>
             <option value="500k-2M DA">500,000 – 2,000,000 دج</option>
-            <option value="&gt;2M DA">أكثر من 2,000,000 دج</option>
+            <option value=">2M DA">أكثر من 2,000,000 دج</option>
           </select>
         </div>
-        <div class="fg"><label class="ar">تفاصيل المشروع</label><label class="fr">Détails du projet</label><textarea id="qd" rows="4" placeholder="اشرح مشروعك بإيجاز..."></textarea></div>
+        <div class="fg">
+          <label class="ar">تفاصيل المشروع</label><label class="fr">Détails du projet</label><label class="en">Project Details</label>
+          <textarea id="qd" rows="4" placeholder="اشرح مشروعك بإيجاز..."></textarea>
+        </div>
         <button type="submit" class="submit-btn" id="qBtn">
           <i class="fas fa-paper-plane"></i>
-          <span class="ar">إرسال الطلب</span><span class="fr">Envoyer la demande</span>
+          <span class="ar">إرسال الطلب</span><span class="fr">Envoyer la demande</span><span class="en">Send Request</span>
         </button>
       </form>
     </div>
@@ -495,16 +596,17 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 <section id="contact">
   <h2 class="stitle ar">تواصل <span>معنا</span></h2>
   <h2 class="stitle fr">Contactez <span>Nous</span></h2>
+  <h2 class="stitle en">Contact <span>Us</span></h2>
   <div class="contw">
     <div class="cform" data-aos="fade-up">
       <form id="contactForm" onsubmit="submitContact(event)">
-        <input id="cn" placeholder="الاسم الكامل" data-ar="الاسم الكامل" data-fr="Nom Complet" required>
-        <input id="ce" type="email" placeholder="البريد الإلكتروني" data-ar="البريد الإلكتروني" data-fr="Email" required>
-        <input id="cp" type="tel" placeholder="رقم الهاتف" data-ar="رقم الهاتف" data-fr="Téléphone">
-        <textarea id="cm" rows="5" placeholder="رسالتك..." data-ar="رسالتك..." data-fr="Votre message..." required></textarea>
+        <input id="cn" placeholder="الاسم الكامل" data-ar="الاسم الكامل" data-fr="Nom Complet" data-en="Full Name" required>
+        <input id="ce" type="email" placeholder="البريد الإلكتروني" data-ar="البريد الإلكتروني" data-fr="Email" data-en="Email" required>
+        <input id="cp" type="tel" placeholder="رقم الهاتف" data-ar="رقم الهاتف" data-fr="Téléphone" data-en="Phone Number">
+        <textarea id="cm" rows="5" placeholder="رسالتك..." data-ar="رسالتك..." data-fr="Votre message..." data-en="Your message..." required></textarea>
         <button type="submit" class="submit-btn" id="cBtn">
           <i class="fas fa-paper-plane"></i>
-          <span class="ar">إرسال الرسالة</span><span class="fr">Envoyer</span>
+          <span class="ar">إرسال الرسالة</span><span class="fr">Envoyer</span><span class="en">Send Message</span>
         </button>
       </form>
     </div>
@@ -515,8 +617,9 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
   <div class="clnks" data-aos="fade-up">
     <h3 class="ar">أو تواصل معنا <span>مباشرة</span></h3>
     <h3 class="fr">Ou contactez-nous <span>directement</span></h3>
+    <h3 class="en">Or contact us <span>directly</span></h3>
     <div class="clrow">
-      <a id="lnkFb" href="#" target="_blank" class="clbtn fb"><i class="fab fa-facebook"></i><span class="ar">فيسبوك</span><span class="fr">Facebook</span></a>
+      <a id="lnkFb" href="#" target="_blank" class="clbtn fb"><i class="fab fa-facebook"></i><span class="ar">فيسبوك</span><span class="fr">Facebook</span><span class="en">Facebook</span></a>
       <a id="lnkWa" href="#" target="_blank" class="clbtn wa"><i class="fab fa-whatsapp"></i><span id="waTxt">WhatsApp</span></a>
       <a id="lnkEm" href="#"                 class="clbtn em"><i class="fas fa-envelope"></i><span id="emTxt">Email</span></a>
     </div>
@@ -535,7 +638,7 @@ html[lang="fr"] .toastbox{right:auto;left:24px;}
 
 <footer>
   <p>© 2026 <strong id="ftName">DF Technology</strong> &nbsp;|&nbsp;
-     <span class="ar">جميع الحقوق محفوظة</span><span class="fr">Tous droits réservés</span>
+     <span class="ar">جميع الحقوق محفوظة</span><span class="fr">Tous droits réservés</span><span class="en">All Rights Reserved</span>
      &nbsp;|&nbsp; <a href="admin/login.html"><i class="fas fa-lock"></i></a></p>
 </footer>
 
@@ -589,23 +692,24 @@ async function loadSite() {
 
   // ---- Stats ----
   const stats = [
-    { n: cfg.stat1Num||'12+',  ar: cfg.stat1Ar||'سنوات خبرة',   fr: cfg.stat1Fr||"Années d'expérience" },
-    { n: cfg.stat2Num||'500+', ar: cfg.stat2Ar||'مشروع منجز',   fr: cfg.stat2Fr||'Projets réalisés' },
-    { n: cfg.stat3Num||'100%', ar: cfg.stat3Ar||'رضا العملاء',  fr: cfg.stat3Fr||'Satisfaction client' },
+    { n: cfg.stat1Num||'12+',  ar: cfg.stat1Ar||'سنوات خبرة',   fr: cfg.stat1Fr||"Années d'expérience", en: cfg.stat1En||'Years of Experience' },
+    { n: cfg.stat2Num||'500+', ar: cfg.stat2Ar||'مشروع منجز',   fr: cfg.stat2Fr||'Projets réalisés', en: cfg.stat2En||'Projects Completed' },
+    { n: cfg.stat3Num||'100%', ar: cfg.stat3Ar||'رضا العملاء',  fr: cfg.stat3Fr||'Satisfaction client', en: cfg.stat3En||'Client Satisfaction' },
   ];
   document.getElementById('statsRow').innerHTML = stats.map(s =>
     `<div class="si" data-aos="fade-up"><div class="sn">${s.n}</div>
-     <div class="sl ar">${s.ar}</div><div class="sl fr">${s.fr}</div></div>`).join('');
+     <div class="sl ar">${s.ar}</div><div class="sl fr">${s.fr}</div><div class="sl en">${s.en}</div></div>`).join('');
 
   // ---- Services ----
   document.getElementById('svcGrid').innerHTML = svcs.length
     ? svcs.map(s => `
       <div class="svcc" data-aos="fade-up">
         <i class="${s.icon||'fas fa-cog'}"></i>
-        <h3 class="ar">${s.title_ar}</h3><h3 class="fr">${s.title_fr}</h3>
-        <p class="ar">${s.desc_ar||''}</p><p class="fr">${s.desc_fr||''}</p>
+        <h3 class="ar">${s.title_ar}</h3><h3 class="fr">${s.title_fr}</h3><h3 class="en">${s.title_en||s.title_fr}</h3>
+        <p class="ar">${s.desc_ar||''}</p><p class="fr">${s.desc_fr||''}</p><p class="en">${s.desc_en||s.desc_fr||''}</p>
         <ul class="ar">${(s.items_ar||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
         <ul class="fr">${(s.items_fr||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
+        <ul class="en">${(s.items_en||s.items_fr||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
       </div>`).join('')
     : '<p style="color:var(--txt);text-align:center;grid-column:1/-1">لا توجد خدمات</p>';
 
@@ -617,8 +721,10 @@ async function loadSite() {
         <img src="${p.image_url||ph}" alt="${p.title_ar}" onerror="this.src='${ph}'">
         <div class="pj-lbl ar">${p.title_ar}</div>
         <div class="pj-lbl fr">${p.title_fr}</div>
+        <div class="pj-lbl en">${p.title_en||p.title_fr}</div>
         <a href="project/index.html?id=${p.id}" class="pj-link ar"><i class="fas fa-eye"></i>عرض التفاصيل</a>
         <a href="project/index.html?id=${p.id}" class="pj-link fr"><i class="fas fa-eye"></i>Voir détails</a>
+        <a href="project/index.html?id=${p.id}" class="pj-link en"><i class="fas fa-eye"></i>View Details</a>
       </div>`).join('')
     : `<div class="swiper-slide"><img src="${ph}" alt="project"></div>`;
   initSwiper();
@@ -628,11 +734,12 @@ async function loadSite() {
     ? fqs.map(f => `
       <div class="faqi" data-aos="fade-up">
         <div class="faqq" onclick="this.parentElement.classList.toggle('open')">
-          <span class="ar">${f.question_ar}</span><span class="fr">${f.question_fr}</span>
+          <span class="ar">${f.question_ar}</span><span class="fr">${f.question_fr}</span><span class="en">${f.question_en||f.question_fr}</span>
           <i class="fas fa-chevron-down"></i>
         </div>
         <div class="faqa ar" style="padding-top:12px">${f.answer_ar}</div>
         <div class="faqa fr" style="padding-top:12px">${f.answer_fr}</div>
+        <div class="faqa en" style="padding-top:12px">${f.answer_en||f.answer_fr}</div>
       </div>`).join('')
     : '<p style="color:var(--txt);text-align:center">لا توجد أسئلة</p>';
 
@@ -722,9 +829,13 @@ async function submitQuote(e) {
       budget: document.getElementById('qb').value,
       details: document.getElementById('qd').value,
     });
-    toast(document.getElementById('html').lang==='ar'
-      ? 'تم إرسال طلبك بنجاح! سنتواصل معك خلال 24 ساعة ✓'
-      : 'Demande envoyée! Nous vous contacterons dans les 24h ✓');
+    const lang = document.getElementById('html').lang;
+    const msgs = {
+      ar: 'تم إرسال طلبك بنجاح! سنتواصل معك خلال 24 ساعة ✓',
+      fr: 'Demande envoyée! Nous vous contacterons dans les 24h ✓',
+      en: 'Request sent! We will contact you within 24 hours ✓'
+    };
+    toast(msgs[lang] || msgs.ar);
     document.getElementById('quoteForm').reset();
   } catch(err) {
     toast('حدث خطأ، يرجى المحاولة مجدداً', 'er');
@@ -746,7 +857,9 @@ async function submitContact(e) {
       phone: document.getElementById('cp').value,
       message: document.getElementById('cm').value,
     });
-    toast(document.getElementById('html').lang==='ar' ? 'تم إرسال رسالتك بنجاح ✓' : 'Message envoyé avec succès ✓');
+    const lang2 = document.getElementById('html').lang;
+    const cmsgs = { ar: 'تم إرسال رسالتك بنجاح ✓', fr: 'Message envoyé avec succès ✓', en: 'Message sent successfully ✓' };
+    toast(cmsgs[lang2] || cmsgs.ar);
     document.getElementById('contactForm').reset();
   } catch(err) {
     toast('حدث خطأ، يرجى المحاولة مجدداً', 'er');
@@ -755,14 +868,58 @@ async function submitContact(e) {
   btn.innerHTML = '<i class="fas fa-paper-plane"></i><span class="ar">إرسال الرسالة</span><span class="fr">Envoyer</span>';
 }
 
+// ---- Visit Tracker ----
+(function trackVisit() {
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const key = 'dft_visits';
+    const totalKey = 'dft_total_visits';
+    let visits = JSON.parse(localStorage.getItem(key) || '{}');
+    let total = parseInt(localStorage.getItem(totalKey) || '0');
+    visits[today] = (visits[today] || 0) + 1;
+    total += 1;
+    localStorage.setItem(key, JSON.stringify(visits));
+    localStorage.setItem(totalKey, total.toString());
+    // Keep only last 30 days
+    const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 30);
+    Object.keys(visits).forEach(d => { if(new Date(d) < cutoff) delete visits[d]; });
+    localStorage.setItem(key, JSON.stringify(visits));
+  } catch(e) {}
+})();
+
 // ---- Lang ----
-function toggleLang() {
-  const h = document.getElementById('html'), ar = h.lang === 'ar';
-  h.setAttribute('lang', ar ? 'fr' : 'ar');
-  h.setAttribute('dir', ar ? 'ltr' : 'rtl');
-  document.querySelectorAll('[data-ar]').forEach(el => { el.placeholder = el.getAttribute(ar ? 'data-fr' : 'data-ar'); });
+const LANGS = ['ar', 'fr', 'en'];
+const LANG_LABELS = { ar: 'FR / EN', fr: 'EN / AR', en: 'AR / FR' };
+const LANG_DIRS = { ar: 'rtl', fr: 'ltr', en: 'ltr' };
+
+function cycleLang() {
+  const h = document.getElementById('html');
+  const cur = h.lang || 'ar';
+  const next = LANGS[(LANGS.indexOf(cur) + 1) % LANGS.length];
+  applyLang(next);
+}
+
+function applyLang(lang) {
+  const h = document.getElementById('html');
+  h.setAttribute('lang', lang);
+  h.setAttribute('dir', LANG_DIRS[lang]);
+  document.getElementById('langBtn').textContent = LANG_LABELS[lang];
+  // Update placeholders for contact form
+  document.querySelectorAll('[data-ar]').forEach(el => {
+    const val = el.getAttribute('data-' + lang) || el.getAttribute('data-ar');
+    el.placeholder = val;
+  });
+  localStorage.setItem('dft_lang', lang);
   setTimeout(() => { initSwiper(); AOS.refresh(); }, 100);
 }
+
+// Restore saved language
+(function() {
+  const saved = localStorage.getItem('dft_lang');
+  if (saved && LANGS.includes(saved) && saved !== 'ar') {
+    applyLang(saved);
+  }
+})();
 
 // ---- Nav ----
 function toggleMenu() { document.getElementById('navMenu').classList.toggle('open'); }
